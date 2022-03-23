@@ -1,4 +1,4 @@
-package com.example.ktu_restaurant_makata
+package edu.ktu.restaurant
 
 import io.flutter.embedding.android.FlutterActivity
 
