@@ -24,7 +24,7 @@ class FoodModel {
     final int id;
     final String foodName;
     final String image;
-    final String price;
+    final double price;
     final String description;
     final String status;
     final DateTime createdAt;
