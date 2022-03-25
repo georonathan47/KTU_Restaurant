@@ -18,66 +18,68 @@ SizedBox DashboardCardComponent(
             right: 5.0,
           ),
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 170,
-                  child: Stack(
-                    children: [
-                      Image.asset(image),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: SizedBox(
-                          width: 55,
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: Text(
-                              "GH¢ ${double.parse('$price').toStringAsFixed(2)}",
-                              style: GoogleFonts.raleway(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 170,
+                    child: Stack(
+                      children: [
+                        Image.asset(image),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: SizedBox(
+                            width: 55,
+                            child: Align(
+                              alignment: Alignment.topRight,
+                              child: Text(
+                                "GH¢ ${double.parse('$price').toStringAsFixed(2)}",
+                                style: GoogleFonts.raleway(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                    fit: StackFit.expand,
+                      ],
+                      fit: StackFit.expand,
+                    ),
                   ),
-                ),
-                const Divider(
-                  color: Colors.black87,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(bottom: 15),
-                  child: Column(
-                    children: [
-                      Text(
-                        title,
-                        style: GoogleFonts.raleway(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: .75,
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 45.0),
-                        child: Divider(
-                          color: Colors.black87,
-                        ),
-                      ),
-                      Text(
-                        description,
-                        style: GoogleFonts.raleway(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          letterSpacing: .75,
-                        ),
-                      ),
-                    ],
+                  const Divider(
+                    color: Colors.black87,
                   ),
-                ),
-              ],
+                  Container(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: Column(
+                      children: [
+                        Text(
+                          title,
+                          style: GoogleFonts.raleway(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: .75,
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 45.0),
+                          child: Divider(
+                            color: Colors.black87,
+                          ),
+                        ),
+                        Text(
+                          description,
+                          style: GoogleFonts.raleway(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: .75,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -12,9 +12,7 @@ class TrendingTodayScreen extends StatefulWidget {
 }
 
 class _TrendingTodayScreenState extends State<TrendingTodayScreen> {
-  final SliverGridDelegate gridDelegate;
 
-  _TrendingTodayScreenState({this.gridDelegate});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,31 +29,75 @@ class _TrendingTodayScreenState extends State<TrendingTodayScreen> {
         decoration: const BoxDecoration(
           color: IVORY,
         ),
-        child: Column(
-          children: [
-            addVertical(5),
-            Container(
-              child: Expanded(
-                child: SingleChildScrollView(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 7),
-                    height: 270,
-                    child: ListView(
-                      children: [
-                        DashboardCardComponent(
-                          'assets/images/logo.png',
-                          "Local",
-                          "",
-                          0,
-                          null,
-                        ),
-                      ],
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.only(left:11),
+          child: Column(
+            children: [
+              addVertical(5),
+              Container(
+                child: Column(
+                  children: [
+                    DashboardCardComponent(
+                      'assets/images/logo.png',
+                      "Local",
+                      "",
+                      0,
+                      null,
                     ),
-                  ),
+                    addVertical(5),
+                    DashboardCardComponent(
+                      'assets/images/logo.png',
+                      "Local",
+                      "",
+                      0,
+                      null,
+                    ),
+                    addVertical(5),
+                    DashboardCardComponent(
+                      'assets/images/logo.png',
+                      "Local",
+                      "",
+                      0,
+                      null,
+                    ),
+                    addVertical(5),
+                    DashboardCardComponent(
+                      'assets/images/logo.png',
+                      "Local",
+                      "",
+                      0,
+                      null,
+                    ),
+                    addVertical(5),
+                    DashboardCardComponent(
+                      'assets/images/logo.png',
+                      "Local",
+                      "",
+                      0,
+                      null,
+                    ),
+                    addVertical(5),
+                    DashboardCardComponent(
+                      'assets/images/logo.png',
+                      "Local",
+                      "",
+                      0,
+                      null,
+                    ),
+                    addVertical(5),
+                    DashboardCardComponent(
+                      'assets/images/logo.png',
+                      "Local",
+                      "",
+                      0,
+                      null,
+                    ),
+                    addVertical(5),
+                  ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

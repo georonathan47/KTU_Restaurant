@@ -112,11 +112,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ],
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
-                // padding: const EdgeInsets.only(right: 10),
-                child: Trending(),
+              SizedBox(
+                height: 270,
+                child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    return DashboardCardComponent(
+                      'assets/images/logo.png',
+                      "Banku & Tilapia",
+                      "With Groundnut Soup and Chicken/Fish",
+                      15,
+                      null,
+                    );
+                  },
+                ),
               ),
             ],
           ),
@@ -171,7 +182,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.horizontal,
       shrinkWrap: true,
-      itemCount: 4,
+      itemCount: 2,
       itemBuilder: (context, index) {
         try {} catch (e) {}
         return DashboardCardComponent(
@@ -191,7 +202,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
         DashboardCardComponent(
           'assets/images/logo.png',
           "Banku & Tilapia",
-          "With Goundnut Soup and Chicken/Fish",
+          "With Groundnut Soup and Chicken/Fish",
+          15,
+          null,
+        ),
+        addHorizontal(5),
+        DashboardCardComponent(
+          'assets/images/logo.png',
+          "Jollof & Tilapia",
+          "With Chicken/Fish & extra 'Shitɔ'",
+          17,
+          null,
+        ),
+        addHorizontal(5),
+        DashboardCardComponent(
+          'assets/images/logo.png',
+          "Fufu & Tilapia",
+          "With Groundnut Soup and Chicken/Fish",
           15,
           null,
         ),
@@ -199,7 +226,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         DashboardCardComponent(
           'assets/images/logo.png',
           "Banku & Tilapia",
-          "With Goundnut Soup and Chicken/Fish",
+          "With Groundnut Soup and Chicken/Fish",
           15,
           null,
         ),
@@ -207,23 +234,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         DashboardCardComponent(
           'assets/images/logo.png',
           "Banku & Tilapia",
-          "With Goundnut Soup and Chicken/Fish",
-          15,
-          null,
-        ),
-        addHorizontal(5),
-        DashboardCardComponent(
-          'assets/images/logo.png',
-          "Banku & Tilapia",
-          "With Goundnut Soup and Chicken/Fish",
-          15,
-          null,
-        ),
-        addHorizontal(5),
-        DashboardCardComponent(
-          'assets/images/logo.png',
-          "Banku & Tilapia",
-          "With Goundnut Soup and Chicken/Fish",
+          "With Groundnut Soup and Chicken/Fish",
           15,
           null,
         ),
