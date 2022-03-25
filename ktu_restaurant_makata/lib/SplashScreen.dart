@@ -192,7 +192,7 @@ class _SplashScreenState extends State<SplashScreen>
           id: data['id'],
           foodName: data['foodName'].toString(),
           image: data['image'].toString(),
-          price: data['price'].toString(),
+          price: data['price'],
           description: data['description'].toString(),
         );
 

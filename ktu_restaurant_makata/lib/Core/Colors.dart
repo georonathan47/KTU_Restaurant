@@ -9,3 +9,4 @@ const GOLD = Color(0xFFffee00);
 const PURPLE = Color(0xFF800066);
 const BLACK_COLOR = Colors.black;
 const IVORY = Color(0xFFFFFFF0);
+const LIGHT_RED = Colors.redAccent;

@@ -263,14 +263,12 @@ class UtilityService {
                       const SizedBox(
                         height: 7,
                       ),
-                      Container(
-                        child: Text(
-                          "Something",
-                          style: GoogleFonts.raleway(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.black),
-                        ),
+                      Text(
+                        "Something",
+                        style: GoogleFonts.raleway(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black),
                       ),
                       const SizedBox(
                         height: 3,
