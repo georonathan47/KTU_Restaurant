@@ -6,7 +6,7 @@ import 'package:http/http.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
 import 'package:ktu_restaurant_makata/Models/FoodModel.dart';
 
-import 'Components/WidgetFunction.dart';
+import 'Core/WidgetFunction.dart';
 import 'Index.dart';
 import 'Services/NetworkUtility.dart';
 import 'Services/Path.dart';

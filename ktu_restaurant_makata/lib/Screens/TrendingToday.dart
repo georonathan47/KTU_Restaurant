@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ktu_restaurant_makata/Components/AppBar.dart';
 import 'package:ktu_restaurant_makata/Components/Dashboard/DashboardCard.dart';
-import 'package:ktu_restaurant_makata/Components/WidgetFunction.dart';
+import 'package:ktu_restaurant_makata/Components/Dashboard/TrendingTodayCard.dart';
+import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
 
 class TrendingTodayScreen extends StatefulWidget {
@@ -12,7 +13,6 @@ class TrendingTodayScreen extends StatefulWidget {
 }
 
 class _TrendingTodayScreenState extends State<TrendingTodayScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,69 +30,23 @@ class _TrendingTodayScreenState extends State<TrendingTodayScreen> {
           color: IVORY,
         ),
         child: SingleChildScrollView(
-          padding: const EdgeInsets.only(left:11),
+          padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
           child: Column(
             children: [
               addVertical(5),
               Container(
                 child: Column(
                   children: [
-                    DashboardCardComponent(
-                      'assets/images/logo.png',
-                      "Local",
-                      "",
-                      0,
-                      null,
-                    ),
-                    addVertical(5),
-                    DashboardCardComponent(
-                      'assets/images/logo.png',
-                      "Local",
-                      "",
-                      0,
-                      null,
-                    ),
-                    addVertical(5),
-                    DashboardCardComponent(
-                      'assets/images/logo.png',
-                      "Local",
-                      "",
-                      0,
-                      null,
-                    ),
-                    addVertical(5),
-                    DashboardCardComponent(
-                      'assets/images/logo.png',
-                      "Local",
-                      "",
-                      0,
-                      null,
-                    ),
-                    addVertical(5),
-                    DashboardCardComponent(
-                      'assets/images/logo.png',
-                      "Local",
-                      "",
-                      0,
-                      null,
-                    ),
-                    addVertical(5),
-                    DashboardCardComponent(
-                      'assets/images/logo.png',
-                      "Local",
-                      "",
-                      0,
-                      null,
-                    ),
-                    addVertical(5),
-                    DashboardCardComponent(
-                      'assets/images/logo.png',
-                      "Local",
-                      "",
-                      0,
-                      null,
-                    ),
-                    addVertical(5),
+                    TrendingCard("LOCAL"),
+                    addVertical(15),
+                    TrendingCard("SNACK"),
+                    addVertical(15),
+                    TrendingCard("LOCAL"),
+                    addVertical(15),
+                    TrendingCard("FOREIGN"),
+                    addVertical(15),
+                    TrendingCard("LOCAL"),
+                    addVertical(15),
                   ],
                 ),
               ),

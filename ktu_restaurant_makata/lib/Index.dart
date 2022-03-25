@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'Core/Colors.dart';
 import 'Screens/DashboardScreen.dart';
+import 'Screens/MoreScreen.dart';
 
 class Index extends StatefulWidget {
   const Index({Key key}) : super(key: key);
@@ -29,10 +30,8 @@ class _IndexState extends State<Index> {
       //   return const ServicesScreen();
       // } else if (index == 2) {
       //   return const PaymentScreen(showButton: false);
-      // } else if (index == 3) {
-      //   return const LitigationScreen();
-      // } else if (index == 4) {
-      //   return const AccountScreen();
+      } else if (index == 3) {
+        return const MoreScreen();
     } else {
       return null;
     }

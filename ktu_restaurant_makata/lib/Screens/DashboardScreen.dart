@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
-import 'package:ktu_restaurant_makata/Components/WidgetFunction.dart';
+import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
 import 'package:ktu_restaurant_makata/Models/FoodModel.dart';
 import 'package:ktu_restaurant_makata/Screens/TrendingToday.dart';
@@ -15,7 +15,7 @@ import 'package:ktu_restaurant_makata/Util/Utility.dart';
 
 import '../Components/AppBar.dart';
 import '../Components/Dashboard/DashboardCard.dart';
-import '../Components/Progrss.dart';
+import '../Core/Progrss.dart';
 import 'Categories.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -78,7 +78,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
-                  // padding: const EdgeInsets.only(right: 10),
                   child: Trending(),
                 ),
               ),
@@ -114,19 +113,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               SizedBox(
                 height: 270,
-                child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 3,
-                  itemBuilder: (context, index) {
-                    return DashboardCardComponent(
-                      'assets/images/logo.png',
-                      "Banku & Tilapia",
-                      "With Groundnut Soup and Chicken/Fish",
-                      15,
-                      null,
-                    );
-                  },
+                child: FutureBuilder(
+                  builder:(context, snapshot) => ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 3,
+                    itemBuilder: (context, index) {
+                      return DashboardCardComponent(
+                        'assets/images/logo.png',
+                        "Banku & Tilapia",
+                        "With Groundnut Soup and Chicken/Fish",
+                        15,
+                        null,
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
@@ -136,40 +137,40 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Future<ListView> fetchFoodData() async {
-    try {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return const ProgressDialog(displayMessage: 'Please wait...');
-        },
-      );
-      Response response = await NetworkUtility().getData(FOOD_URL);
-      debugPrint(response.body);
-      if (response.statusCode == 200) {
-        var data = jsonDecode(response.body);
-        FoodModel foodModel = FoodModel(
-            id: data['id'],
-            foodName: data['foodName'].toString(),
-            description: data['description'].toString(),
-            image: data['image'].toString(),
-            price: data['price']);
-        debugPrint('Food model from server: $foodModel');
-        return Trends(
-          foodModel.image,
-          foodModel.foodName,
-          foodModel.description,
-          foodModel.price,
-          null,
-        );
-      }
-    } catch (err) {
-      UtilityService().showMessage(
-        message: "An unknown error has occured.\nPlease try again later...",
-        icon: const Icon(Icons.cancel, color: LIGHT_RED),
-      );
-    }
-  }
+  // Future<ListView> fetchFoodData() async {
+  //   try {
+  //     showDialog(
+  //       context: context,
+  //       builder: (context) {
+  //         return const ProgressDialog(displayMessage: 'Please wait...');
+  //       },
+  //     );
+  //     Response response = await NetworkUtility().getData(FOOD_URL);
+  //     debugPrint(response.body);
+  //     if (response.statusCode == 200) {
+  //       var data = jsonDecode(response.body);
+  //       FoodModel foodModel = FoodModel(
+  //           id: data['id'],
+  //           foodName: data['foodName'].toString(),
+  //           description: data['description'].toString(),
+  //           image: data['image'].toString(),
+  //           price: data['price']);
+  //       debugPrint('Food model from server: $foodModel');
+  //       return Trends(
+  //         foodModel.image,
+  //         foodModel.foodName,
+  //         foodModel.description,
+  //         foodModel.price,
+  //         null,
+  //       );
+  //     }
+  //   } catch (err) {
+  //     UtilityService().showMessage(
+  //       message: "An unknown error has occured.\nPlease try again later...",
+  //       icon: const Icon(Icons.cancel, color: LIGHT_RED),
+  //     );
+  //   }
+  // }
 
   ListView Trends(
     String image,
@@ -206,7 +207,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           15,
           null,
         ),
-        addHorizontal(5),
+        addHorizontal(15),
         DashboardCardComponent(
           'assets/images/logo.png',
           "Jollof & Tilapia",
@@ -214,7 +215,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           17,
           null,
         ),
-        addHorizontal(5),
+        addHorizontal(15),
         DashboardCardComponent(
           'assets/images/logo.png',
           "Fufu & Tilapia",
@@ -222,7 +223,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           15,
           null,
         ),
-        addHorizontal(5),
+        addHorizontal(15),
         DashboardCardComponent(
           'assets/images/logo.png',
           "Banku & Tilapia",
@@ -230,7 +231,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           15,
           null,
         ),
-        addHorizontal(5),
+        addHorizontal(15),
         DashboardCardComponent(
           'assets/images/logo.png',
           "Banku & Tilapia",
@@ -238,7 +239,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           15,
           null,
         ),
-        addHorizontal(5),
+        addHorizontal(15),
       ],
     );
   }
