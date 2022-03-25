@@ -1,5 +1,8 @@
+// ignore_for_file: file_names
+
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
@@ -10,7 +13,7 @@ class NetworkUtility {
       Response response = await http.get(uri);
       return response;
     } catch (e) {
-      print('Network Service Error: ${e.toString()}');
+      debugPrint('Network Service Error: ${e.toString()}');
       return null;
     }
   }
@@ -22,7 +25,7 @@ class NetworkUtility {
       Response response = await http.get(uri, headers: headers);
       return response;
     } catch (e) {
-      print('Network Service Error: ${e.toString()}');
+      debugPrint('Network Service Error: ${e.toString()}');
       return null;
     }
   }
@@ -34,7 +37,7 @@ class NetworkUtility {
       Response response = await http.post(uri, headers: headers, body: body);
       return response;
     } catch (e) {
-      print('Network Service Error: ${e.toString()}');
+      debugPrint('Network Service Error: ${e.toString()}');
       return null;
     }
   }
@@ -50,7 +53,7 @@ class NetworkUtility {
       Response response = await http.post(uri, headers: headers, body: body);
       return response;
     } catch (e) {
-      print('Network Service Error: ${e.toString()}');
+      debugPrint('Network Service Error: ${e.toString()}');
       return null;
     }
   }

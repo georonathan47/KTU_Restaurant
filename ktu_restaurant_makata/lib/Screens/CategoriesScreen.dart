@@ -1,19 +1,21 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:ktu_restaurant_makata/Components/AppBar.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
 
-class MoreScreen extends StatefulWidget {
-  const MoreScreen({Key key}) : super(key: key);
+class CategoriesScreen extends StatefulWidget {
+  const CategoriesScreen({Key key}) : super(key: key);
 
   @override
-  State<MoreScreen> createState() => _MoreScreenState();
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
 }
 
-class _MoreScreenState extends State<MoreScreen> {
+class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarComponent(true, "More", null),
+      appBar: AppBarComponent(false, "Categories", null),
       body: Container(
         decoration: const BoxDecoration(color: IVORY),
       ),

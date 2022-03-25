@@ -1,21 +1,13 @@
-// ignore_for_file: non_constant_identifier_names
-
-import 'dart:convert';
+// ignore_for_file: non_constant_identifier_names, file_names
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart';
-import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
-import 'package:ktu_restaurant_makata/Models/FoodModel.dart';
+import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
 import 'package:ktu_restaurant_makata/Screens/TrendingToday.dart';
-import 'package:ktu_restaurant_makata/Services/NetworkUtility.dart';
-import 'package:ktu_restaurant_makata/Services/Path.dart';
-import 'package:ktu_restaurant_makata/Util/Utility.dart';
 
 import '../Components/AppBar.dart';
 import '../Components/Dashboard/DashboardCard.dart';
-import '../Core/Progrss.dart';
 import 'Categories.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -114,7 +106,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               SizedBox(
                 height: 270,
                 child: FutureBuilder(
-                  builder:(context, snapshot) => ListView.builder(
+                  builder: (context, snapshot) => ListView.builder(
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     itemCount: 3,

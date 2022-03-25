@@ -1,6 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:ktu_restaurant_makata/Components/AppBar.dart';
-import 'package:ktu_restaurant_makata/Components/Dashboard/DashboardCard.dart';
 import 'package:ktu_restaurant_makata/Components/Dashboard/TrendingTodayCard.dart';
 import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
@@ -34,21 +35,19 @@ class _TrendingTodayScreenState extends State<TrendingTodayScreen> {
           child: Column(
             children: [
               addVertical(5),
-              Container(
-                child: Column(
-                  children: [
-                    TrendingCard("LOCAL"),
-                    addVertical(15),
-                    TrendingCard("SNACK"),
-                    addVertical(15),
-                    TrendingCard("LOCAL"),
-                    addVertical(15),
-                    TrendingCard("FOREIGN"),
-                    addVertical(15),
-                    TrendingCard("LOCAL"),
-                    addVertical(15),
-                  ],
-                ),
+              Column(
+                children: [
+                  TrendingCard("LOCAL"),
+                  addVertical(15),
+                  TrendingCard("SNACK"),
+                  addVertical(15),
+                  TrendingCard("LOCAL"),
+                  addVertical(15),
+                  TrendingCard("FOREIGN"),
+                  addVertical(15),
+                  TrendingCard("LOCAL"),
+                  addVertical(15),
+                ],
               ),
             ],
           ),

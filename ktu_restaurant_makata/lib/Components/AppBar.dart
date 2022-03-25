@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, file_names
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,8 +13,8 @@ AppBar AppBarComponent(bool dashboard, String title, IconButton icon) {
     title: Text(
       title,
       style: GoogleFonts.raleway(
-        fontSize: 16,
-        letterSpacing: 0.6,
+        fontSize: 18,
+        letterSpacing: 1,
         color: BLACK_COLOR,
         fontWeight: FontWeight.w600,
       ),

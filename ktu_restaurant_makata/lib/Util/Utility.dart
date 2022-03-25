@@ -318,18 +318,15 @@ class UtilityService {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
-                        child: Container(
-                          //alignment: Alignment.center,
-                          child: Center(
-                            child: Text(
-                              message,
-                              style: GoogleFonts.lato(
-                                fontSize: 15,
-                                wordSpacing: 0.8,
-                                fontWeight: FontWeight.w400,
-                                color: textColor ?? Colors.black,
-                                decoration: TextDecoration.none,
-                              ),
+                        child: Center(
+                          child: Text(
+                            message,
+                            style: GoogleFonts.lato(
+                              fontSize: 15,
+                              wordSpacing: 0.8,
+                              fontWeight: FontWeight.w400,
+                              color: textColor ?? Colors.black,
+                              decoration: TextDecoration.none,
                             ),
                           ),
                         ),
@@ -434,20 +431,17 @@ class UtilityService {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
-                        child: Container(
-                          //alignment: Alignment.center,
-                          child: Center(
-                            child: Text(
-                              message,
-                              style: GoogleFonts.lato(
-                                fontSize: 15,
-                                wordSpacing: 1,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                                decoration: TextDecoration.none,
-                              ),
-                              textAlign: TextAlign.center,
+                        child: Center(
+                          child: Text(
+                            message,
+                            style: GoogleFonts.lato(
+                              fontSize: 15,
+                              wordSpacing: 1,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                              decoration: TextDecoration.none,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       ),
@@ -581,20 +575,17 @@ class UtilityService {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
-                        child: Container(
-                          //alignment: Alignment.center,
-                          child: Center(
-                            child: Text(
-                              message,
-                              style: GoogleFonts.lato(
-                                fontSize: 15,
-                                wordSpacing: 1,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                                decoration: TextDecoration.none,
-                              ),
-                              textAlign: TextAlign.center,
+                        child: Center(
+                          child: Text(
+                            message,
+                            style: GoogleFonts.lato(
+                              fontSize: 15,
+                              wordSpacing: 1,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                              decoration: TextDecoration.none,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       ),
@@ -680,19 +671,16 @@ class UtilityService {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 15, right: 15),
-                      child: Container(
-                        //alignment: Alignment.center,
-                        child: Center(
-                          child: Text(
-                            message,
-                            style: GoogleFonts.lato(
-                              fontSize: 16.3,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black,
-                              decoration: TextDecoration.none,
-                            ),
-                            textAlign: TextAlign.center,
+                      child: Center(
+                        child: Text(
+                          message,
+                          style: GoogleFonts.lato(
+                            fontSize: 16.3,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                            decoration: TextDecoration.none,
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),

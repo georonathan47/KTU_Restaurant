@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'Core/Colors.dart';
+import 'Screens/CategoriesScreen.dart';
 import 'Screens/DashboardScreen.dart';
+import 'Screens/History.dart';
 import 'Screens/MoreScreen.dart';
 
 class Index extends StatefulWidget {
@@ -26,10 +28,10 @@ class _IndexState extends State<Index> {
   Widget navigator(int index) {
     if (index == 0) {
       return const DashboardScreen();
-      // } else if (index == 1) {
-      //   return const ServicesScreen();
-      // } else if (index == 2) {
-      //   return const PaymentScreen(showButton: false);
+      } else if (index == 1) {
+        return const HistoryScreen();
+      } else if (index == 2) {
+        return const CategoriesScreen();
       } else if (index == 3) {
         return const MoreScreen();
     } else {
@@ -59,19 +61,12 @@ class _IndexState extends State<Index> {
           ),
           label: 'Dashboard',
         ),
-        // BottomNavigationBarItem(
-        //   icon: Icon(
-        //     Icons.article_outlined,
-        //     size: 20,
-        //   ),
-        //   label: 'Services',
-        // ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.shopping_cart_outlined,
+            Icons.history,
             size: 20,
           ),
-          label: 'Cart',
+          label: 'History',
         ),
         BottomNavigationBarItem(
           icon: Icon(
