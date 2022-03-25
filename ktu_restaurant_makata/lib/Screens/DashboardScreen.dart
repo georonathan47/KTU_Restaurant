@@ -40,87 +40,85 @@ class _DashboardScreenState extends State<DashboardScreen> {
         decoration: const BoxDecoration(
           color: IVORY,
         ),
-        child: Expanded(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              children: [
-                addVertical(3),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Trending Today",
-                      style: GoogleFonts.raleway(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: .75),
-                    ),
-                    TextButton(
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const TrendingTodayScreen(),
-                        ),
-                      ),
-                      child: Text(
-                        "See All",
-                        style: GoogleFonts.raleway(
-                          fontSize: 16,
-                          color: PURPLE,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    physics: const BouncingScrollPhysics(),
-                    // padding: const EdgeInsets.only(right: 10),
-                    child: Trending(),
-                  ),
-                ),
-                addVertical(15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Categories",
-                      style: GoogleFonts.raleway(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              addVertical(3),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Trending Today",
+                    style: GoogleFonts.raleway(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
-                        letterSpacing: .75,
+                        letterSpacing: .75),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const TrendingTodayScreen(),
                       ),
                     ),
-                    TextButton(
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CategoryScreen(),
-                        ),
-                      ),
-                      child: Text(
-                        "See All",
-                        style: GoogleFonts.raleway(
-                          fontSize: 16,
-                          color: PURPLE,
-                          fontWeight: FontWeight.w600,
-                        ),
+                    child: Text(
+                      "See All",
+                      style: GoogleFonts.raleway(
+                        fontSize: 16,
+                        color: PURPLE,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                  ],
-                ),
-                SingleChildScrollView(
+                  ),
+                ],
+              ),
+              SizedBox(
+                child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
                   // padding: const EdgeInsets.only(right: 10),
                   child: Trending(),
                 ),
-              ],
-            ),
+              ),
+              addVertical(15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Categories",
+                    style: GoogleFonts.raleway(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: .75,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CategoryScreen(),
+                      ),
+                    ),
+                    child: Text(
+                      "See All",
+                      style: GoogleFonts.raleway(
+                        fontSize: 16,
+                        color: PURPLE,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                // padding: const EdgeInsets.only(right: 10),
+                child: Trending(),
+              ),
+            ],
           ),
         ),
       ),
