@@ -46,7 +46,7 @@ android {
         applicationId "edu.ktu.restaurant"
         minSdkVersion 20
         targetSdkVersion 30
-        multidexEnabled true
+        // multidexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
