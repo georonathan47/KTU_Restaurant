@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ktu_restaurant_makata/Components/AppBar.dart';
 import 'package:ktu_restaurant_makata/Components/More/FAQs.dart';
+import 'package:ktu_restaurant_makata/Components/More/UserSession.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
 import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
+import 'package:ktu_restaurant_makata/Util/Utility.dart';
 
 import '../Components/More/UserAccouunt.dart';
 
@@ -67,6 +69,18 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
               ),
               const Divider(thickness: 0.35, color: Colors.black),
+              GestureDetector(
+                onTap: () => UtilityService().confirmationBox(
+                  context: context,
+                  title: "Logout",
+                  message: "Are you sure you want to logout?\nThis will clear your current user session.",
+                  onYes: () {},
+                  onNo: () => Navigator.pop(context),
+                  yesButtonColor: Colors.teal,
+                  noButtonColor: LIGHT_RED,
+                ),
+                child: UserSession(),
+              ),
             ],
           ),
         ),
