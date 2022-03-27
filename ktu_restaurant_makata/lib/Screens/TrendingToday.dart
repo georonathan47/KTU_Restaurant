@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:ktu_restaurant_makata/Components/AppBar.dart';
 import 'package:ktu_restaurant_makata/Components/Dashboard/TrendingTodayCard.dart';
-import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
+import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
 
 class TrendingTodayScreen extends StatefulWidget {
   const TrendingTodayScreen({Key key}) : super(key: key);
@@ -21,7 +21,7 @@ class _TrendingTodayScreenState extends State<TrendingTodayScreen> {
         false,
         "Trending Today",
         IconButton(
-          icon: const Icon(Icons.navigate_before),
+          icon: const Icon(Icons.navigate_before, size: 40),
           color: BLACK_COLOR,
           onPressed: () => Navigator.pop(context),
         ),

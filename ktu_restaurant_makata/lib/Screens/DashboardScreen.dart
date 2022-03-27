@@ -1,10 +1,15 @@
 // ignore_for_file: non_constant_identifier_names, file_names
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
 import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
+import 'package:ktu_restaurant_makata/Models/FoodModel.dart';
 import 'package:ktu_restaurant_makata/Screens/TrendingToday.dart';
+import 'package:ktu_restaurant_makata/Util/NetworkUtility.dart';
+import 'package:ktu_restaurant_makata/Services/Path.dart';
 
 import '../Components/AppBar.dart';
 import '../Components/Dashboard/DashboardCard.dart';
@@ -18,10 +23,12 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  Future<FoodModel> futureFood;
+
   @override
   void initState() {
     super.initState();
-    // fetchFoodData();
+    futureFood = fetchFoods();
   }
 
   @override
@@ -106,17 +113,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
               SizedBox(
                 height: 270,
                 child: FutureBuilder(
+                  future: fetchFoods(),
                   builder: (context, snapshot) => ListView.builder(
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.only(right: 15),
                     itemCount: 3,
                     itemBuilder: (context, index) {
-                      return DashboardCardComponent(
-                        'assets/images/logo.png',
-                        "Banku & Tilapia",
-                        "With Groundnut Soup and Chicken/Fish",
-                        15,
-                        null,
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 15.0),
+                        child: DashboardCardComponent(
+                          'assets/images/logo.png',
+                          "Banku & Tilapia",
+                          "With Groundnut Soup and Chicken/Fish",
+                          15,
+                          null,
+                        ),
                       );
                     },
                   ),
@@ -127,6 +139,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
       ),
     );
+  }
+
+  Future<FoodModel> fetchFoods() async {
+    final response = await NetworkUtility().getData(FOOD_URL);
+    print(response.body);
+    if (response.statusCode == 200) {
+      return FoodModel.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to load foods');
+    }
   }
 
   // Future<ListView> fetchFoodData() async {
