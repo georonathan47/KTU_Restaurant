@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ktu_restaurant_makata/Components/AppBar.dart';
+import 'package:ktu_restaurant_makata/Components/More/FAQs.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
 import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
 
@@ -37,11 +38,35 @@ class _MoreScreenState extends State<MoreScreen> {
                   ),
                 ),
               ),
-              const Divider(
-                thickness: 0.35,
-                color: Colors.black,
-              ),
+              const Divider(thickness: 0.35, color: Colors.black),
               UserAccount("GEORGE", "You account has not been validated yet!"),
+              addVertical(25),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Contact Information',
+                  style: GoogleFonts.raleway(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              const Divider(thickness: 0.35, color: Colors.black),
+              FAQs(context),
+              addVertical(25),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'User Account Session',
+                  style: GoogleFonts.raleway(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              const Divider(thickness: 0.35, color: Colors.black),
             ],
           ),
         ),
