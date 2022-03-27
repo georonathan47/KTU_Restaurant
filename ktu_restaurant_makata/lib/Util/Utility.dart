@@ -2,7 +2,6 @@ import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class UtilityService {
   void showMessage({String message, Icon icon, BuildContext context}) {
     showFlash(
@@ -419,35 +418,34 @@ class UtilityService {
                           child: Text(
                             title,
                             style: GoogleFonts.lato(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                decoration: TextDecoration.none),
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              decoration: TextDecoration.none,
+                              letterSpacing: 1.5,
+                            ),
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 30,
-                      ),
+                      const SizedBox(height: 30),
                       Padding(
-                        padding: const EdgeInsets.only(left: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: Center(
                           child: Text(
                             message,
                             style: GoogleFonts.lato(
-                              fontSize: 15,
+                              fontSize: 18,
                               wordSpacing: 1,
                               fontWeight: FontWeight.w400,
                               color: Colors.black,
                               decoration: TextDecoration.none,
+                              letterSpacing: 1,
                             ),
                             textAlign: TextAlign.center,
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 12,
-                      ),
+                      const SizedBox(height: 12),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -479,9 +477,7 @@ class UtilityService {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
+                          const SizedBox(width: 10),
                           GestureDetector(
                             onTap: onNo,
                             child: Container(

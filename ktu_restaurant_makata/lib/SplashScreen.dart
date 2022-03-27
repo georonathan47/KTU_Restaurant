@@ -8,7 +8,7 @@ import 'package:ktu_restaurant_makata/Models/FoodModel.dart';
 
 import 'Core/WidgetFunction.dart';
 import 'Index.dart';
-import 'Services/NetworkUtility.dart';
+import 'Util/NetworkUtility.dart';
 import 'Services/Path.dart';
 import 'Util/Utility.dart';
 
