@@ -78,10 +78,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ],
               ),
               SizedBox(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  child: Trending(),
+                height: 270,
+                child: FutureBuilder(
+                  future: fetchFoods(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return DoThis(snapshot);
+                    } else if (snapshot.hasError) {
+                      return Text('SNAPSHOT ERROR: ${snapshot.error}');
+                    }
+                    return const CircularProgressIndicator.adaptive();
+                  },
                 ),
               ),
               addVertical(15),
@@ -115,17 +122,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ],
               ),
               SizedBox(
-                height: 270,
-                child: FutureBuilder(
-                  future: fetchFoods(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return DoThis(snapshot);
-                    } else if (snapshot.hasError) {
-                      return Text('SNAPSHOT ERROR: ${snapshot.error}');
-                    }
-                    return const CircularProgressIndicator.adaptive();
-                  },
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  child: Trending(),
                 ),
               ),
             ],
