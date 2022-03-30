@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
 import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
 import 'package:ktu_restaurant_makata/Models/FoodModel.dart';
@@ -13,6 +14,8 @@ import 'package:ktu_restaurant_makata/Services/Path.dart';
 
 import '../Components/AppBar.dart';
 import '../Components/Dashboard/DashboardCard.dart';
+import '../Core/Progrss.dart';
+import '../Util/Utility.dart';
 import 'Categories.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -23,7 +26,8 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  Future<FoodModel> futureFood;
+  Future<Food> futureFood;
+  List foodFromSnapshot = [];
 
   @override
   void initState() {
@@ -114,24 +118,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 height: 270,
                 child: FutureBuilder(
                   future: fetchFoods(),
-                  builder: (context, snapshot) => ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.only(right: 15),
-                    itemCount: 3,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: DashboardCardComponent(
-                          'assets/images/logo.png',
-                          "Banku & Tilapia",
-                          "With Groundnut Soup and Chicken/Fish",
-                          15,
-                          null,
-                        ),
-                      );
-                    },
-                  ),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return DoThis(snapshot);
+                    } else if (snapshot.hasError) {
+                      return Text('SNAPSHOT ERROR: ${snapshot.error}');
+                    }
+                    return const CircularProgressIndicator.adaptive();
+                  },
                 ),
               ),
             ],
@@ -141,50 +135,81 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Future<FoodModel> fetchFoods() async {
+  ListView DoThis(AsyncSnapshot<dynamic> snapshot) {
+    return ListView.builder(
+      // controller: scrollContriller,
+      physics: const BouncingScrollPhysics(),
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.only(right: 15),
+      itemCount: snapshot.data.dataa.length,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.only(right: 15.0),
+          child: DashboardCardComponent(
+            /*snapshot.data.dataa[index].image ??*/ 'assets/images/logo.png',
+            snapshot.data.dataa[index].foodName ?? "Banku & Tilapia",
+            snapshot.data.dataa[index].description ??
+                "With Groundnut Soup and Chicken/Fish",
+            double.parse(snapshot.data.dataa[index].price).toDouble(),
+            null,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<Food> fetchFoods() async {
     final response = await NetworkUtility().getData(FOOD_URL);
     print(response.body);
     if (response.statusCode == 200) {
-      return FoodModel.fromJson(jsonDecode(response.body));
+      return Food.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to load foods');
     }
   }
 
-  // Future<ListView> fetchFoodData() async {
-  //   try {
-  //     showDialog(
-  //       context: context,
-  //       builder: (context) {
-  //         return const ProgressDialog(displayMessage: 'Please wait...');
-  //       },
-  //     );
-  //     Response response = await NetworkUtility().getData(FOOD_URL);
-  //     debugPrint(response.body);
-  //     if (response.statusCode == 200) {
-  //       var data = jsonDecode(response.body);
-  //       FoodModel foodModel = FoodModel(
-  //           id: data['id'],
-  //           foodName: data['foodName'].toString(),
-  //           description: data['description'].toString(),
-  //           image: data['image'].toString(),
-  //           price: data['price']);
-  //       debugPrint('Food model from server: $foodModel');
-  //       return Trends(
-  //         foodModel.image,
-  //         foodModel.foodName,
-  //         foodModel.description,
-  //         foodModel.price,
-  //         null,
-  //       );
-  //     }
-  //   } catch (err) {
-  //     UtilityService().showMessage(
-  //       message: "An unknown error has occured.\nPlease try again later...",
-  //       icon: const Icon(Icons.cancel, color: LIGHT_RED),
-  //     );
-  //   }
-  // }
+  Future<Food> fetchFoodData() async {
+    try {
+      // showDialog(
+      //   context: context,
+      //   builder: (context) {
+      //     return const ProgressDialog(displayMessage: 'Please wait...');
+      //   },
+      // );
+      Response response = await NetworkUtility().getData(FOOD_URL);
+      debugPrint(response.body);
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        // var index;
+        Food food = Food(
+          dataa: [
+            data['id'],
+            data['foodName'],
+            data['description'],
+            data['image'],
+            data['price'],
+          ],
+          message: data['message'],
+          status: data['status'],
+        );
+        debugPrint('Food model from server: $food');
+        return DashboardCardComponent(
+          'Food.dataa[index].image' ?? '-',
+          'Food.dataa[index].foodName' ?? '-',
+          'Food.dataa[index].description' ?? '-',
+          20,
+          null,
+        ) as Future<Food>;
+      }
+    } catch (err) {
+      UtilityService().showMessage(
+        context: context,
+        message: "An unknown error has occured.\nPlease try again later...",
+        icon: const Icon(Icons.cancel, color: LIGHT_RED),
+      );
+    }
+  }
 
   ListView Trends(
     String image,

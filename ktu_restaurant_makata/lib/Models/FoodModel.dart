@@ -1,47 +1,75 @@
-// To parse this JSON data, do
-//
-//     final foodModel = foodModelFromJson(jsonString);
-
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
-FoodModel foodModelFromJson(String str) => FoodModel.fromJson(json.decode(str));
+class Food {
+  Food({
+    @required this.dataa,
+    @required this.message,
+    @required this.status,
+  });
 
-String foodModelToJson(FoodModel data) => json.encode(data.toJson());
+  List<FoodDetails> dataa;
+  String message;
+  bool status;
 
-class FoodModel {
-    FoodModel({
-     
-        this.id,
-        this.foodName,
-        this.image,
-        this.price,
-        this.description,
-        this.status,
-        this.createdAt,
-        this.updatedAt,
-    });
+  factory Food.fromRawJson(String str) => Food.fromJson(json.decode(str));
 
-    final int id;
-    final String foodName;
-    final String image;
-    final double price;
-    final String description;
-    final String status;
-    final DateTime createdAt;
-    final DateTime updatedAt;
+  String toRawJson() => json.encode(toJson());
 
-    factory FoodModel.fromJson(Map<String, dynamic> json) => FoodModel(
-        id: json["id"],
-        foodName: json["food_name"],
-        image: json["image"],
-        price: json["price"],
-        description: json["description"],
+  factory Food.fromJson(Map<String, dynamic> json) => Food(
+        dataa: List<FoodDetails>.from(
+            json["data"].map((x) => FoodDetails.fromJson(x))),
+        message: json["message"],
         status: json["status"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
+        "data": List<dynamic>.from(dataa.map((x) => x.toJson())),
+        "message": message,
+        "status": status,
+      };
+}
+
+class FoodDetails {
+  FoodDetails({
+    @required this.id,
+    @required this.foodName,
+    @required this.image,
+    @required this.price,
+    @required this.description,
+    @required this.status,
+    this.createdAt,
+    this.updatedAt,
+  });
+
+  int id;
+  String foodName;
+  String image;
+  String price;
+  String description;
+  String status;
+  DateTime createdAt;
+  DateTime updatedAt;
+
+  factory FoodDetails.fromRawJson(String str) =>
+      FoodDetails.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory FoodDetails.fromJson(Map<String, dynamic> json) {
+    return FoodDetails(
+      id: json["id"],
+      foodName: json["food_name"],
+      image: json["image"],
+      price: json["price"],
+      description: json["description"],
+      status: json["status"].toString(),
+      // createdAt: DateTime.parse(json["created_at"]),
+      // updatedAt: DateTime.parse(json["updated_at"]),
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
         "id": id,
         "food_name": foodName,
         "image": image,
@@ -50,5 +78,5 @@ class FoodModel {
         "status": status,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
-    };
+      };
 }

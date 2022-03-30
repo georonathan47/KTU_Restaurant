@@ -188,12 +188,14 @@ class _SplashScreenState extends State<SplashScreen>
         //parse data received
         var data = jsonDecode(response.body);
 
-        FoodModel foodModel = FoodModel(
-          id: data['id'],
-          foodName: data['foodName'].toString(),
-          image: data['image'].toString(),
-          price: data['price'],
-          description: data['description'].toString(),
+        Food food = Food(
+          dataa: [
+            data['id'],
+            data['foodName'],
+            data['image'],
+            data['price'],
+            data['description'],
+          ],
         );
 
         //process dashboard data

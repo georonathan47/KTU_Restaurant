@@ -13,7 +13,7 @@ class UtilityService {
             position: FlashPosition.bottom,
             child: FlashBar(
               icon: icon,
-              content: Text(
+              message: Text(
                 message,
                 style: const TextStyle(color: Colors.black),
               ),
