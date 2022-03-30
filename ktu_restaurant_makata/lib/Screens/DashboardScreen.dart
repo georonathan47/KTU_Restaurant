@@ -8,6 +8,7 @@ import 'package:http/http.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
 import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
 import 'package:ktu_restaurant_makata/Models/FoodModel.dart';
+import 'package:ktu_restaurant_makata/Screens/FoodDetails.dart';
 import 'package:ktu_restaurant_makata/Screens/TrendingToday.dart';
 import 'package:ktu_restaurant_makata/Util/NetworkUtility.dart';
 import 'package:ktu_restaurant_makata/Services/Path.dart';
@@ -146,13 +147,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.only(right: 15.0),
-          child: DashboardCardComponent(
-            /*snapshot.data.dataa[index].image ??*/ 'assets/images/logo.png',
-            snapshot.data.dataa[index].foodName ?? "Banku & Tilapia",
-            snapshot.data.dataa[index].description ??
-                "With Groundnut Soup and Chicken/Fish",
-            double.parse(snapshot.data.dataa[index].price).toDouble(),
-            null,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FoodDetailScreen(
+                    name: snapshot.data.dataa[index].foodName,
+                    image: snapshot.data.dataa[index].image,
+                    price: snapshot.data.dataa[index].price,
+                    description: snapshot.data.dataa[index].description,
+                  ),
+                ),
+              );
+            },
+            child: DashboardCardComponent(
+              /*snapshot.data.dataa[index].image ??*/ 'assets/images/logo.png',
+              snapshot.data.dataa[index].foodName ?? "Banku & Tilapia",
+              snapshot.data.dataa[index].description ??
+                  "With Groundnut Soup and Chicken/Fish",
+              double.parse(snapshot.data.dataa[index].price).toDouble(),
+              null,
+            ),
           ),
         );
       },
