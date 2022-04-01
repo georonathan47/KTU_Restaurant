@@ -54,7 +54,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Trending Today",
+                    "Today's Menu",
                     style: GoogleFonts.raleway(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
@@ -88,7 +88,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     } else if (snapshot.hasError) {
                       return Text('SNAPSHOT ERROR: ${snapshot.error}');
                     }
-                    return const CircularProgressIndicator.adaptive();
+                    return Transform.scale(
+                      child: const CircularProgressIndicator.adaptive(),
+                      scale: 2,
+                    );
                   },
                 ),
               ),

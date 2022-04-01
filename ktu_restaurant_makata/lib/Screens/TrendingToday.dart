@@ -19,7 +19,7 @@ class _TrendingTodayScreenState extends State<TrendingTodayScreen> {
     return Scaffold(
       appBar: AppBarComponent(
         false,
-        "Trending Today",
+        "Today's Menu",
         IconButton(
           icon: const Icon(Icons.navigate_before, size: 40),
           color: BLACK_COLOR,
