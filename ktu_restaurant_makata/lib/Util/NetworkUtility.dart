@@ -30,7 +30,7 @@ class NetworkUtility {
     }
   }
 
-  Future<Response> postData({String url, String body}) async {
+  Future<Response> postData(String register_url, Map<String, dynamic> userMap, {String url, String body}) async {
     Map<String, String> headers = {"Content-type": "application/json"};
     var uri = Uri.parse(url);
     try {

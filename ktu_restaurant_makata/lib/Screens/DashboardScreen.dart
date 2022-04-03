@@ -15,7 +15,6 @@ import 'package:ktu_restaurant_makata/Services/Path.dart';
 
 import '../Components/AppBar.dart';
 import '../Components/Dashboard/DashboardCard.dart';
-import '../Core/Progrss.dart';
 import '../Util/Utility.dart';
 import 'Categories.dart';
 
@@ -179,12 +178,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   Future<Food> fetchFoods() async {
-    final response = await NetworkUtility().getData(FOOD_URL);
-    print(response.body);
-    if (response.statusCode == 200) {
-      return Food.fromJson(jsonDecode(response.body));
-    } else {
-      throw Exception('Failed to load foods');
+    try {
+      final response = await NetworkUtility().getData(FOOD_URL);
+      debugPrint(response.body);
+      if (response.statusCode == 200) {
+        return Food.fromJson(jsonDecode(response.body));
+      } else {
+        throw Exception('Failed to load foods');
+      }
+    } catch (err) {
+      UtilityService().showException(
+        context: context,
+        icon: const Icon(Icons.error, color: Colors.white, size: 25),
+        message: "Failed to load contents.\nPlease try again later.",
+      );
     }
   }
 

@@ -2,24 +2,52 @@ import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Core/Colors.dart';
+
 class UtilityService {
   void showMessage({String message, Icon icon, BuildContext context}) {
     showFlash(
-        context: context,
-        duration: const Duration(seconds: 3),
-        builder: (_, controller) {
-          return Flash(
-            controller: controller,
-            position: FlashPosition.bottom,
-            child: FlashBar(
-              icon: icon,
-              message: Text(
-                message,
-                style: const TextStyle(color: Colors.black),
+      context: context,
+      duration: const Duration(seconds: 3),
+      builder: (_, controller) {
+        return Flash(
+          controller: controller,
+          position: FlashPosition.bottom,
+          child: FlashBar(
+            icon: icon,
+            message: Text(
+              message,
+              style: const TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void showException({String message, Icon icon, BuildContext context}) {
+    showFlash(
+      context: context,
+      duration: const Duration(seconds: 3),
+      builder: (_, controller) {
+        return Flash(
+          controller: controller,
+          backgroundColor: WARNING,
+          position: FlashPosition.bottom,
+          child: FlashBar(
+            icon: icon,
+            message: Text(
+              message,
+              style: GoogleFonts.raleway(
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
               ),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 
   //

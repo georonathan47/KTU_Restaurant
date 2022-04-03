@@ -104,8 +104,8 @@ Container FAQs(BuildContext context) {
               decoration: const BoxDecoration(
                 color: BACKGROUND_COLOR,
                 borderRadius: BorderRadius.only(
-                 bottomLeft: Radius.circular(15),
-                 bottomRight: Radius.circular(15),
+                  bottomLeft: Radius.circular(15),
+                  bottomRight: Radius.circular(15),
                 ),
               ),
               padding: const EdgeInsets.all(15.0),

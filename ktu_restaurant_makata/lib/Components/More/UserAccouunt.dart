@@ -41,11 +41,10 @@ Container UserAccount(String title, String subtitle) {
         child: Text(
           subtitle,
           style: GoogleFonts.raleway(
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
-            color: BLACK_COLOR,
-            letterSpacing: .25
-          ),
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
+              color: BLACK_COLOR,
+              letterSpacing: .25),
         ),
       ),
     ),

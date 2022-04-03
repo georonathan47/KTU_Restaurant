@@ -17,6 +17,7 @@ dependencies:
   google_maps_flutter:
   change_app_package_name: ^1.0.0
   url_launcher:
+  shared_preferences:
 
 
 dev_dependencies:

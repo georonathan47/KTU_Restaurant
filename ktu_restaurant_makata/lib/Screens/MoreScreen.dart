@@ -8,6 +8,7 @@ import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
 import 'package:ktu_restaurant_makata/Util/Utility.dart';
 
 import '../Components/More/UserAccouunt.dart';
+import 'LoginAndRegister.dart';
 
 class MoreScreen extends StatefulWidget {
   const MoreScreen({Key key}) : super(key: key);
@@ -41,7 +42,18 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
               ),
               const Divider(thickness: 0.35, color: Colors.black),
-              UserAccount("GEORGE", "You account has not been validated yet!"),
+              GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LoginAndRegister(),
+                  ),
+                ),
+                child: UserAccount(
+                  "GEORGE",
+                  "Your account has not been validated yet!",
+                ),
+              ),
               addVertical(25),
               Align(
                 alignment: Alignment.centerLeft,
@@ -73,7 +85,8 @@ class _MoreScreenState extends State<MoreScreen> {
                 onTap: () => UtilityService().confirmationBox(
                   context: context,
                   title: "Logout",
-                  message: "Are you sure you want to logout?\nThis will clear your current user session.",
+                  message:
+                      "Are you sure you want to logout?\nThis will clear your current user session.",
                   onYes: () {},
                   onNo: () => Navigator.pop(context),
                   yesButtonColor: Colors.teal,
