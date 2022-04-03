@@ -31,7 +31,7 @@ Container UserAccount(String title, String subtitle) {
           style: GoogleFonts.raleway(
             fontSize: 20,
             letterSpacing: 1.2,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
             color: BLACK_COLOR,
           ),
         ),

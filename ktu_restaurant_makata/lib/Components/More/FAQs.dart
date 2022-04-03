@@ -35,7 +35,7 @@ Container FAQs(BuildContext context) {
               style: GoogleFonts.raleway(
                 fontSize: 20,
                 letterSpacing: 1.2,
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w600,
                 color: BLACK_COLOR,
               ),
             ),
@@ -45,10 +45,11 @@ Container FAQs(BuildContext context) {
             child: Text(
               "0200100007",
               style: GoogleFonts.raleway(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                  color: BLACK_COLOR,
-                  letterSpacing: .25),
+                fontWeight: FontWeight.w400,
+                fontSize: 16,
+                color: BLACK_COLOR,
+                letterSpacing: .25,
+              ),
             ),
           ),
         ),
@@ -71,7 +72,7 @@ Container FAQs(BuildContext context) {
               style: GoogleFonts.raleway(
                 fontSize: 20,
                 letterSpacing: 1.2,
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w600,
                 color: BLACK_COLOR,
               ),
             ),
@@ -81,10 +82,11 @@ Container FAQs(BuildContext context) {
             child: Text(
               "georonathan47@gmail.com",
               style: GoogleFonts.raleway(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                  color: BLACK_COLOR,
-                  letterSpacing: .25),
+                fontWeight: FontWeight.w400,
+                fontSize: 16,
+                color: BLACK_COLOR,
+                letterSpacing: .25,
+              ),
             ),
           ),
         ),
@@ -117,7 +119,7 @@ Container FAQs(BuildContext context) {
                     style: GoogleFonts.raleway(
                       fontSize: 20,
                       letterSpacing: 1.2,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w600,
                       color: BLACK_COLOR,
                     ),
                   ),

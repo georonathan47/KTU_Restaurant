@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ktu_restaurant_makata/Index.dart';
 
 import 'SplashScreen.dart';
 

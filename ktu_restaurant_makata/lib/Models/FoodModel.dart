@@ -69,7 +69,7 @@ class FoodDetails {
     );
   }
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "id": id,
         "food_name": foodName,
         "image": image,

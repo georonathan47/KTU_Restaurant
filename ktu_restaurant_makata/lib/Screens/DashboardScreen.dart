@@ -32,7 +32,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    futureFood = fetchFoods();
+    futureFood = fetchFoodData();
   }
 
   @override
