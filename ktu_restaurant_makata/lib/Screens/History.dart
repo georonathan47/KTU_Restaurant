@@ -59,7 +59,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Order No: ",
+                              "Order No:",
                               style: GoogleFonts.raleway(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
