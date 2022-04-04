@@ -32,7 +32,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    futureFood = fetchFoodData();
+    futureFood = fetchFoods();
   }
 
   @override
@@ -43,95 +43,98 @@ class _DashboardScreenState extends State<DashboardScreen> {
         decoration: const BoxDecoration(
           color: IVORY,
         ),
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              addVertical(3),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Today's Menu",
-                    style: GoogleFonts.raleway(
+        child: RefreshIndicator(
+          onRefresh: () async => await fetchFoods(),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                addVertical(3),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Today's Menu",
+                      style: GoogleFonts.raleway(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: .75),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const TrendingTodayScreen(),
+                        ),
+                      ),
+                      child: Text(
+                        "See All",
+                        style: GoogleFonts.raleway(
+                          fontSize: 16,
+                          color: PURPLE,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 270,
+                  child: FutureBuilder(
+                    future: fetchFoods(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return DoThis(snapshot);
+                      } else if (snapshot.hasError) {
+                        return Text('SNAPSHOT ERROR: ${snapshot.error}');
+                      }
+                      return Transform.scale(
+                        child: const CircularProgressIndicator.adaptive(),
+                        scale: 2,
+                      );
+                    },
+                  ),
+                ),
+                addVertical(15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Categories",
+                      style: GoogleFonts.raleway(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
-                        letterSpacing: .75),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const TrendingTodayScreen(),
+                        letterSpacing: .75,
                       ),
                     ),
-                    child: Text(
-                      "See All",
-                      style: GoogleFonts.raleway(
-                        fontSize: 16,
-                        color: PURPLE,
-                        fontWeight: FontWeight.w600,
+                    TextButton(
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CategoryScreen(),
+                        ),
+                      ),
+                      child: Text(
+                        "See All",
+                        style: GoogleFonts.raleway(
+                          fontSize: 16,
+                          color: PURPLE,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 270,
-                child: FutureBuilder(
-                  future: fetchFoods(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return DoThis(snapshot);
-                    } else if (snapshot.hasError) {
-                      return Text('SNAPSHOT ERROR: ${snapshot.error}');
-                    }
-                    return Transform.scale(
-                      child: const CircularProgressIndicator.adaptive(),
-                      scale: 2,
-                    );
-                  },
+                  ],
                 ),
-              ),
-              addVertical(15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Categories",
-                    style: GoogleFonts.raleway(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: .75,
-                    ),
+                SizedBox(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
+                    child: Trending(),
                   ),
-                  TextButton(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const CategoryScreen(),
-                      ),
-                    ),
-                    child: Text(
-                      "See All",
-                      style: GoogleFonts.raleway(
-                        fontSize: 16,
-                        color: PURPLE,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  child: Trending(),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

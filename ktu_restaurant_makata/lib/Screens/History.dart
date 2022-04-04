@@ -39,42 +39,55 @@ class _HistoryScreenState extends State<HistoryScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: const BoxDecoration(color: IVORY),
         child: RefreshIndicator(
-          onRefresh: () => futureOrders,
+          onRefresh: () => fetchOrders(),
           child: FutureBuilder(
-            future: futureOrders,
+            future: fetchOrders(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return ListView.separated(
                   itemCount: snapshot.data.data.length,
                   itemBuilder: (context, index) {
-                    return Card(
-                      color: BACKGROUND_COLOR,
-                      elevation: 1,
-                      child: ListTile(
-                        leading: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Icon(Icons.history, size: 35),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Order No:",
-                              style: GoogleFonts.raleway(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: .25,
+                    var orderNumber = snapshot.data.data[index].orderNo;
+                    var payment = snapshot.data.data[index].paymentType;
+                    var transactions = snapshot.data.data[index].transaction;
+                    var status = snapshot.data.data[index].status;
+                    // var name = snapshot.data.data[index].orderDetails.food;
+                    return GestureDetector(
+                      onTap: () async => await onPressed(
+                        context,
+                        orderNumber,
+                        payment,
+                        transactions,
+                        status,
+                      ),
+                      child: Card(
+                        color: BACKGROUND_COLOR,
+                        elevation: 1,
+                        child: ListTile(
+                          leading: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(Icons.history, size: 35),
+                          ),
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Order No:",
+                                style: GoogleFonts.raleway(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: .25,
+                                ),
                               ),
-                            ),
-                            Text(snapshot.data.data[index].orderNo),
-                          ],
-                        ),
-                        subtitle: Column(
-                          children: [
-                            // Text(snapshot?.data?.data[index].),
-                            addVertical(15),
-                            Text(snapshot.data.data[index].status),
-                          ],
+                              Text(snapshot.data.data[index].orderNo),
+                            ],
+                          ),
+                          subtitle: Column(
+                            children: [
+                              addVertical(15),
+                              Text(snapshot.data.data[index].status),
+                            ],
+                          ),
                         ),
                       ),
                     );
@@ -110,10 +123,113 @@ class _HistoryScreenState extends State<HistoryScreen> {
     );
   }
 
+  Future<dynamic> onPressed(
+    BuildContext context,
+    String orderNumber,
+    String paymentType,
+    String transactions,
+    String status
+  ) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          elevation: 1,
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.35,
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(25)),
+            ),
+            child: Column(
+              children: [
+                addVertical(7),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "ORDER DETAILS",
+                      style: GoogleFonts.raleway(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: .25,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text(
+                        'CLOSE',
+                        style: GoogleFonts.raleway(
+                          color: Colors.red,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: .25,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  color: BLACK25,
+                ),
+                // ! Order Number
+                addVertical(5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextString('Order Number:'),
+                    TextString(orderNumber),
+                  ],
+                ),
+                // ! Food Details
+                addVertical(15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextString('Payment Type:'),
+                    TextString(paymentType.toUpperCase()),
+                  ],
+                ),
+                addVertical(15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextString('Transaction:'),
+                    TextString(transactions ?? 'hello'.toUpperCase()),
+                  ],
+                ),
+                addVertical(15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextString('Status:'),
+                    TextString(status.toUpperCase()),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Text TextString(String data) {
+    return Text(
+      data,
+      style: GoogleFonts.raleway(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        letterSpacing: .25,
+      ),
+    );
+  }
+
   Future<Orders> fetchOrders() async {
     try {
       final response = await NetworkUtility().getData(ORDER_URL);
-      debugPrint(response.body);
+      debugPrint('Order response: ${response.body}');
       if (response.statusCode == 200) {
         return Orders.fromJson(jsonDecode(response.body));
       } else {

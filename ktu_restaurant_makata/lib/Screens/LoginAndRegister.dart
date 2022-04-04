@@ -88,6 +88,7 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
   Container Details(double screenWidth) {
     final size = MediaQuery.of(context).size;
     return Container(
+      // color: BLACK25,
       padding: const EdgeInsets.symmetric(
         horizontal: 5,
         vertical: 1,
@@ -95,6 +96,16 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
       child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
+          // Expanded(
+          //   child: Transform.scale(
+          //     scale: 1.75,
+          //     child: Image.asset(
+          //       'assets/images/logo.png',
+          //       colorBlendMode: BlendMode.lighten,
+          //         color: Colors.black87,
+          //     ),
+          //   ),
+          // ),
           ClipRRect(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

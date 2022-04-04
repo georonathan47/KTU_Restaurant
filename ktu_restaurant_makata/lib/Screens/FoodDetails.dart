@@ -59,6 +59,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
         // ? Picture Container
         PictureContainer(),
         // ? Food Details
+        addVertical(5),
         FoodDetails(context),
         // ? Other Details
         ListView.builder(
