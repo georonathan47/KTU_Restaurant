@@ -70,10 +70,10 @@ class _IndexState extends State<Index> {
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.category_outlined,
+            Icons.shopping_cart_checkout_outlined,
             size: 20,
           ),
-          label: 'Categories',
+          label: 'Cart',
         ),
         BottomNavigationBarItem(
           icon: Icon(

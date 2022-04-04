@@ -50,8 +50,8 @@ class _MoreScreenState extends State<MoreScreen> {
                   ),
                 ),
                 child: UserAccount(
-                  "GEORGE",
-                  "Your account has not been validated yet!",
+                  "Don't have an account?",
+                  "Please register to enjoy amazing offers",
                 ),
               ),
               addVertical(25),

@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ktu_restaurant_makata/Components/Dashboard/DashboardCard.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
 import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
+import 'package:ktu_restaurant_makata/Models/CartModel.dart';
 
 import '../Components/AppBar.dart';
 
@@ -61,20 +63,16 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
         // ? Other Details
         ListView.builder(
           shrinkWrap: true,
+          physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           itemCount: 4,
           itemBuilder: (context, index) {
-            return Card(
-              elevation: 1,
-              shadowColor: EMPHASIS_COLOR,
-              color: BACKGROUND_COLOR,
-              child: Column(
-                children: [
-                  Image.asset('assets/images/logo.png'),
-                  addVertical(5),
-                  Text('Well, well, well'),
-                ],
-              ),
+            return DashboardCardComponent(
+              'assets/images/logo.png',
+              widget.name,
+              widget.description,
+              double.parse(widget.price),
+              () {},
             );
           },
         ),
@@ -161,6 +159,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
   }
 
   Container PictureContainer() {
+    // var index =
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Stack(
@@ -172,7 +171,38 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
             decoration: const BoxDecoration(
               color: BACKGROUND_COLOR,
             ),
-            child: Image.asset('assets/images/logo.png'),
+            child: Stack(
+              children: [
+                Image.asset('assets/images/logo.png'),
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(25),
+                        ),
+                        color: IVORY,
+                      ),
+                      child: IconButton(
+                      padding: const EdgeInsets.all(8),
+                        // ? Fix the index
+                        // onPressed: () => CartClass().addItem(0),
+                        onPressed: () => null,
+                        splashColor: GOLD,
+                        color: GOLD,
+                        icon: const Icon(
+                          Icons.shopping_cart_checkout_outlined,
+                          color: BLACK_COLOR,
+                          size: 35,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),

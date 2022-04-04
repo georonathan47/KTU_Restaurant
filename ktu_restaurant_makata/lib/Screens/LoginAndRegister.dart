@@ -53,14 +53,6 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
     super.dispose();
   }
 
-  // void setID() {
-  //   for (var i; i < 2000; i++) {
-  //     setState(() {
-  //       i += i + 1;
-  //     });
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Loading(
