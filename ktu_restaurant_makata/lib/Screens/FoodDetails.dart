@@ -1,11 +1,11 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ktu_restaurant_makata/Components/Dashboard/DashboardCard.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
 import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
-import 'package:ktu_restaurant_makata/Models/CartModel.dart';
+// import 'package:ktu_restaurant_makata/Models/CartModel.dart';
 
 import '../Components/AppBar.dart';
 

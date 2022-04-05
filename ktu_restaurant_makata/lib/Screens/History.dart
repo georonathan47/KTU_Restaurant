@@ -4,7 +4,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart';
 import 'package:ktu_restaurant_makata/Components/AppBar.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
 import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
@@ -20,6 +19,8 @@ class HistoryScreen extends StatefulWidget {
   @override
   State<HistoryScreen> createState() => _HistoryScreenState();
 }
+
+// final Transaction _transaction = Transaction();
 
 class _HistoryScreenState extends State<HistoryScreen> {
   Future<Orders> futureOrders;
@@ -51,6 +52,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     var payment = snapshot.data.data[index].paymentType;
                     var transactions = snapshot.data.data[index].transaction;
                     var status = snapshot.data.data[index].status;
+                    var orderDetails = snapshot.data.data[index].orderDetails;
                     // var name = snapshot.data.data[index].orderDetails.food;
                     return GestureDetector(
                       onTap: () async => await onPressed(
@@ -59,6 +61,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         payment,
                         transactions,
                         status,
+                        orderDetails,
                       ),
                       child: Card(
                         color: BACKGROUND_COLOR,
@@ -127,16 +130,18 @@ class _HistoryScreenState extends State<HistoryScreen> {
     BuildContext context,
     String orderNumber,
     String paymentType,
-    String transactions,
-    String status
+    Transaction transactions,
+    String status,
+    List<OrderDetail> orderDetails,
   ) {
     return showDialog(
       context: context,
       builder: (context) {
+        var index;
         return Dialog(
           elevation: 1,
           child: Container(
-            height: MediaQuery.of(context).size.height * 0.35,
+            height: MediaQuery.of(context).size.height * 0.4,
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             decoration: const BoxDecoration(
               color: Colors.white,
@@ -195,16 +200,46 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextString('Transaction:'),
-                    TextString(transactions ?? 'hello'.toUpperCase()),
+                    TextString('Status:'),
+                    TextString(status.toUpperCase()),
                   ],
                 ),
                 addVertical(15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextString('Status:'),
-                    TextString(status.toUpperCase()),
+                    // TextString('Transaction:'),
+                    // TextString(transactions.status ?? '-'),
+                    TextString('Food Name: '),
+                    TextString(orderDetails.first.food.foodName),
+                  ],
+                ),
+                addVertical(15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextString('Cost of Food:'),
+                    TextString(
+                        'GH¢ ${double.parse(orderDetails.first.food.price.toString()).toStringAsFixed(2)}'),
+                  ],
+                ),
+                addVertical(15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextString('Quantity:'),
+                    TextString(orderDetails.first.qty.toString()),
+                  ],
+                ),
+
+                const Divider(color: WARNING, thickness: 1),
+                addVertical(15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextString('Total Cost:'),
+                    TextString(
+                        'GH¢ ${double.parse(orderDetails.first.totalAmt.toString()).toStringAsFixed(2)}'),
                   ],
                 ),
               ],

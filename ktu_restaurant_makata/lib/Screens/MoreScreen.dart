@@ -5,6 +5,7 @@ import 'package:ktu_restaurant_makata/Components/More/FAQs.dart';
 import 'package:ktu_restaurant_makata/Components/More/UserSession.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
 import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
+import 'package:ktu_restaurant_makata/Services/AuthService.dart';
 import 'package:ktu_restaurant_makata/Util/Utility.dart';
 
 import '../Components/More/UserAccouunt.dart';
@@ -87,7 +88,9 @@ class _MoreScreenState extends State<MoreScreen> {
                   title: "Logout",
                   message:
                       "Are you sure you want to logout?\nThis will clear your current user session.",
-                  onYes: () {},
+                  onYes: () async {
+                    await AuthService.logout(context);
+                  },
                   onNo: () => Navigator.pop(context),
                   yesButtonColor: Colors.teal,
                   noButtonColor: LIGHT_RED,
