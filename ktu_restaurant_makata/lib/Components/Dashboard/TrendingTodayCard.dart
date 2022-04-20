@@ -34,8 +34,8 @@ Container TrendingCard(String category) {
                 child: Text(
                   category,
                   style: GoogleFonts.raleway(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
                     letterSpacing: 0.75,
                   ),
                 ),

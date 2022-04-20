@@ -91,9 +91,7 @@ Container FAQs(BuildContext context) {
           ),
         ),
         addVertical(10),
-        const Divider(
-          color: IVORY,
-        ),
+        const Divider(color: IVORY),
         GestureDetector(
           onTap: () => Navigator.push(
             context,

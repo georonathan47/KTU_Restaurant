@@ -127,10 +127,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ],
                 ),
                 SizedBox(
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    physics: const BouncingScrollPhysics(),
-                    child: Trending(),
+                  child: Scrollbar(
+                    thickness: 5.5,
+      scrollbarOrientation: ScrollbarOrientation.bottom,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      physics: const BouncingScrollPhysics(),
+                      child: Trending(),
+                    ),
                   ),
                 ),
               ],
@@ -141,42 +145,47 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  ListView DoThis(AsyncSnapshot<dynamic> snapshot) {
-    return ListView.builder(
-      // controller: scrollContriller,
-      physics: const BouncingScrollPhysics(),
-      scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.only(right: 15),
-      itemCount: snapshot.data.dataa.length,
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(right: 15.0),
-          child: GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => FoodDetailScreen(
-                    name: snapshot.data.dataa[index].foodName,
-                    image: snapshot.data.dataa[index].image,
-                    price: snapshot.data.dataa[index].price,
-                    description: snapshot.data.dataa[index].description,
+  Scrollbar DoThis(AsyncSnapshot<dynamic> snapshot) {
+    return Scrollbar(
+      // isAlwaysShown: true,
+      thickness: 5.5,
+      scrollbarOrientation: ScrollbarOrientation.bottom,
+      child: ListView.builder(
+        // controller: scrollContriller,
+        physics: const BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.only(right: 15),
+        itemCount: snapshot.data.dataa.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.only(right: 15.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FoodDetailScreen(
+                      name: snapshot.data.dataa[index].foodName,
+                      image: snapshot.data.dataa[index].image,
+                      price: snapshot.data.dataa[index].price,
+                      description: snapshot.data.dataa[index].description,
+                    ),
                   ),
-                ),
-              );
-            },
-            child: DashboardCardComponent(
-              /*snapshot.data.dataa[index].image ??*/ 'assets/images/logo.png',
-              snapshot.data.dataa[index].foodName ?? "Banku & Tilapia",
-              snapshot.data.dataa[index].description ??
-                  "With Groundnut Soup and Chicken/Fish",
-              double.parse(snapshot.data.dataa[index].price).toDouble(),
-              null,
+                );
+              },
+              child: DashboardCardComponent(
+                /*snapshot.data.dataa[index].image ??*/ 'assets/images/logo.png',
+                snapshot.data.dataa[index].foodName ?? "Banku & Tilapia",
+                snapshot.data.dataa[index].description ??
+                    "With Groundnut Soup and Chicken/Fish",
+                double.parse(snapshot.data.dataa[index].price).toDouble(),
+                null,
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 

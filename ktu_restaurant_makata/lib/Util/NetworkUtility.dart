@@ -30,11 +30,11 @@ class NetworkUtility {
     }
   }
 
-  Future<Response> postData(String register_url, Map<String, dynamic> userMap, {String url, String body}) async {
+  Future<Response> postData(String register_url, Map<String, dynamic> userMap) async {
     Map<String, String> headers = {"Content-type": "application/json"};
-    var uri = Uri.parse(url);
+    var uri = Uri.parse(register_url);
     try {
-      Response response = await http.post(uri, headers: headers, body: body);
+      Response response = await http.post(uri, headers: headers, body: userMap);
       return response;
     } catch (e) {
       debugPrint('Network Service Error: ${e.toString()}');

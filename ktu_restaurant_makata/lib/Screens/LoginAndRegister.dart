@@ -153,7 +153,11 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
                                 false,
                                 true,
                                 false,
-                                () {},
+                                (value) {
+                                  setState(() {
+                                    value = nameController;
+                                  });
+                                },
                               ),
                               addVertical(size.height * 0.010),
                               buildTextFormField(
@@ -163,7 +167,11 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
                                 true,
                                 false,
                                 false,
-                                () {},
+                                (value) {
+                                  setState(() {
+                                    value = emailController;
+                                  });
+                                },
                               ),
                               addVertical(size.height * 0.010),
                               buildTextFormField(
@@ -173,7 +181,11 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
                                 false,
                                 false,
                                 false,
-                                () {},
+                                (value) {
+                                  setState(() {
+                                    value = passwordController;
+                                  });
+                                },
                               ),
                               addVertical(size.height * 0.010),
                               buildTextFormField(
@@ -183,7 +195,11 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
                                 false,
                                 false,
                                 true,
-                                () {},
+                                (value) {
+                                  setState(() {
+                                    value = confirmPasswordController;
+                                  });
+                                },
                               ),
                               const Padding(
                                 padding: EdgeInsets.only(top: 20.0),
@@ -192,29 +208,29 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
                               SizedBox(
                                 height: size.height * 0.07,
                                 width: size.width * 0.55,
-                                child: Expanded(
-                                  //! Register button
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      primary: EMPHASIS_COLOR,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(25),
-                                      ),
+                                // child: Expanded(
+                                //! Register button
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: EMPHASIS_COLOR,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(25),
                                     ),
-                                    child: Text(
-                                      'Register',
-                                      style: GoogleFonts.lato(
-                                        textStyle: const TextStyle(
-                                          fontSize: 22,
-                                          letterSpacing: 2.2,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ),
-                                    onPressed: onButtonPressed,
                                   ),
+                                  child: Text(
+                                    'Register',
+                                    style: GoogleFonts.lato(
+                                      textStyle: const TextStyle(
+                                        fontSize: 22,
+                                        letterSpacing: 2.2,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                  onPressed: onButtonPressed,
                                 ),
+                                // ),
                               ),
                               addVertical(size.height * 0.015),
                               Text(
@@ -257,22 +273,22 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
       };
       // var authority = "ktu-restaurant.bkayphotosgh.com";
       var response = await NetworkUtility().postData(REGISTER_URL, userMap);
-      var boddy = json.decode(response.body);
-      if (boddy['message'] == "Success") {
+      if (response.statusCode == 200) {
+         var boddy = json.decode(jsonEncode(response.body));
         SharedPreferences localStorage = await SharedPreferences.getInstance();
         localStorage.setString('token', json.encode(boddy['token']));
         localStorage.setString('name', json.encode(boddy['name']));
-      }
 
-      setState(() {
-        isAPIcall = false;
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const DashboardScreen(),
-          ),
-        );
-      });
+        setState(() {
+          isAPIcall = false;
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const DashboardScreen(),
+            ),
+          );
+        });
+      }
     }
   }
 

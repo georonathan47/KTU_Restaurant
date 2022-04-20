@@ -141,7 +141,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
         return Dialog(
           elevation: 1,
           child: Container(
-            height: MediaQuery.of(context).size.height * 0.4,
+            height: MediaQuery.of(context).size.height * 0.475,
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             decoration: const BoxDecoration(
               color: Colors.white,
@@ -232,6 +232,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   ],
                 ),
 
+                addVertical(15),
+                const Divider(color: WARNING, thickness: 1),
                 const Divider(color: WARNING, thickness: 1),
                 addVertical(15),
                 Row(
