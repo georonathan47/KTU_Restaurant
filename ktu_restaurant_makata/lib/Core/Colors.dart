@@ -10,5 +10,5 @@ const PURPLE = Color(0xFF800066);
 const BLACK_COLOR = Colors.black;
 const IVORY = Color(0xFFFFFFF0);
 const LIGHT_RED = Colors.redAccent;
-const WARNING = Color(0xFFFAA0A0);
+const WARNING = Colors.red;
 const BLACK25 = Color(0xFF404040);

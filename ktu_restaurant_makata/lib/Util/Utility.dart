@@ -33,7 +33,7 @@ class UtilityService {
       builder: (_, controller) {
         return Flash(
           controller: controller,
-          backgroundColor: WARNING,
+          backgroundColor: WARNING.shade200,
           position: FlashPosition.bottom,
           child: FlashBar(
             icon: icon,

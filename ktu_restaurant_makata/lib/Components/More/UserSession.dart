@@ -7,9 +7,19 @@ import 'package:ktu_restaurant_makata/Core/Colors.dart';
 Container UserSession() {
   return Container(
     height: 120,
-    decoration: const BoxDecoration(
-      color: WARNING,
-      borderRadius: BorderRadius.all(
+    decoration: BoxDecoration(
+      color: WARNING.shade300,
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          WARNING.shade100,
+          WARNING.shade200,
+          WARNING.shade300,
+          // WARNING.shade400,
+        ],
+      ),
+      borderRadius: const BorderRadius.all(
         Radius.circular(15),
       ),
     ),
@@ -41,11 +51,10 @@ Container UserSession() {
         child: Text(
           "Logout of the current user session",
           style: GoogleFonts.raleway(
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
-            color: BLACK_COLOR,
-            letterSpacing: .25
-          ),
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
+              color: BLACK_COLOR,
+              letterSpacing: .25),
         ),
       ),
     ),

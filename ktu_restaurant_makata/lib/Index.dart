@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'Core/Colors.dart';
-import 'Screens/CategoriesScreen.dart';
+// import 'Screens/CategoriesScreen.dart';
 import 'Screens/DashboardScreen.dart';
 import 'Screens/History.dart';
 import 'Screens/MoreScreen.dart';
@@ -28,13 +28,12 @@ class _IndexState extends State<Index> {
   Widget navigator(int index) {
     if (index == 0) {
       return const DashboardScreen();
-      } else if (index == 1) {
-        return const HistoryScreen();
-      } else if (index == 2) {
-        return const CategoriesScreen();
-      } else if (index == 3) {
-        return const MoreScreen();
-    } else {
+    } else if (index == 1) {
+      return const HistoryScreen();
+    } else if (index == 2) {
+      // return const CategoriesScreen();
+      return const MoreScreen();
+    } else if (index == 3) {
       return null;
     }
   }
@@ -68,13 +67,13 @@ class _IndexState extends State<Index> {
           ),
           label: 'History',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.shopping_cart_checkout_outlined,
-            size: 20,
-          ),
-          label: 'Cart',
-        ),
+        // BottomNavigationBarItem(
+        //   icon: Icon(
+        //     Icons.shopping_cart_checkout_outlined,
+        //     size: 20,
+        //   ),
+        //   label: 'Cart',
+        // ),
         BottomNavigationBarItem(
           icon: Icon(
             Icons.more_horiz_outlined,

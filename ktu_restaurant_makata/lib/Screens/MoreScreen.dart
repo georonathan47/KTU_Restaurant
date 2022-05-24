@@ -26,7 +26,7 @@ class _MoreScreenState extends State<MoreScreen> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: Container(
-          decoration: const BoxDecoration(color: IVORY),
+          // decoration: const BoxDecoration(color: IVORY),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -96,6 +96,13 @@ class _MoreScreenState extends State<MoreScreen> {
                   noButtonColor: LIGHT_RED,
                 ),
                 child: UserSession(),
+              ),
+              addVertical(10),
+              Text(
+                'Version: v1.0',
+                style: GoogleFonts.poppins(
+                  letterSpacing: .3
+                ),
               ),
             ],
           ),

@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, file_names
+// ignore_for_file: non_constant_identifier_names, file_names, missing_return
 
 import 'dart:convert';
 
@@ -9,14 +9,14 @@ import 'package:ktu_restaurant_makata/Core/Colors.dart';
 import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
 import 'package:ktu_restaurant_makata/Models/FoodModel.dart';
 import 'package:ktu_restaurant_makata/Screens/FoodDetails.dart';
-import 'package:ktu_restaurant_makata/Screens/TrendingToday.dart';
+// import 'package:ktu_restaurant_makata/Screens/TrendingToday.dart';
 import 'package:ktu_restaurant_makata/Util/NetworkUtility.dart';
 import 'package:ktu_restaurant_makata/Services/Path.dart';
 
 import '../Components/AppBar.dart';
 import '../Components/Dashboard/DashboardCard.dart';
 import '../Util/Utility.dart';
-import 'Categories.dart';
+// import 'Categories.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key key}) : super(key: key);
@@ -61,22 +61,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           fontWeight: FontWeight.w600,
                           letterSpacing: .75),
                     ),
-                    TextButton(
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const TrendingTodayScreen(),
-                        ),
-                      ),
-                      child: Text(
-                        "See All",
-                        style: GoogleFonts.raleway(
-                          fontSize: 16,
-                          color: PURPLE,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
+                    // TextButton(
+                    //   onPressed: () => Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => const TrendingTodayScreen(),
+                    //     ),
+                    //   ),
+                    //   child: Text(
+                    //     "See All",
+                    //     style: GoogleFonts.raleway(
+                    //       fontSize: 16,
+                    //       color: PURPLE,
+                    //       fontWeight: FontWeight.w600,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
                 SizedBox(
@@ -88,10 +88,29 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         return DoThis(snapshot);
                       } else if (snapshot.hasError) {
                         return Text('SNAPSHOT ERROR: ${snapshot.error}');
+                      } else if (snapshot.connectionState ==
+                          ConnectionState.waiting) {
+                        return Transform.scale(
+                          child: const CircularProgressIndicator.adaptive(),
+                          scale: 2,
+                        );
                       }
-                      return Transform.scale(
-                        child: const CircularProgressIndicator.adaptive(),
-                        scale: 2,
+                      return Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 35, vertical: 35),
+                        decoration: const BoxDecoration(
+                          color: EMPHASIS_COLOR,
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Unable to fetch data...\nPlease try again later!',
+                            style: GoogleFonts.raleway(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: .75,
+                            ),
+                          ),
+                        ),
                       );
                     },
                   ),
@@ -101,35 +120,35 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Categories",
+                      "My Orders",
                       style: GoogleFonts.raleway(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         letterSpacing: .75,
                       ),
                     ),
-                    TextButton(
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CategoryScreen(),
-                        ),
-                      ),
-                      child: Text(
-                        "See All",
-                        style: GoogleFonts.raleway(
-                          fontSize: 16,
-                          color: PURPLE,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
+                    // TextButton(
+                    //   onPressed: () => Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => const CategoryScreen(),
+                    //     ),
+                    //   ),
+                    //   child: Text(
+                    //     "See All",
+                    //     style: GoogleFonts.raleway(
+                    //       fontSize: 16,
+                    //       color: PURPLE,
+                    //       fontWeight: FontWeight.w600,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
                 SizedBox(
                   child: Scrollbar(
                     thickness: 5.5,
-      scrollbarOrientation: ScrollbarOrientation.bottom,
+                    scrollbarOrientation: ScrollbarOrientation.bottom,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
@@ -176,7 +195,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               },
               child: DashboardCardComponent(
                 /*snapshot.data.dataa[index].image ??*/ 'assets/images/logo.png',
-                snapshot.data.dataa[index].foodName ?? "Banku & Tilapia",
+                snapshot.data.dataa[index].foodName ?? "Gɔbɛ",
                 snapshot.data.dataa[index].description ??
                     "With Groundnut Soup and Chicken/Fish",
                 double.parse(snapshot.data.dataa[index].price).toDouble(),
@@ -239,6 +258,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
           20,
           null,
         ) as Future<Food>;
+      } else if (response.statusCode == 500) {
+        throw Exception('Server error, unable to fetch food.');
       }
     } catch (err) {
       UtilityService().showMessage(
@@ -262,7 +283,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       shrinkWrap: true,
       itemCount: 2,
       itemBuilder: (context, index) {
-        try {} catch (e) {}
+        // try {} catch (e) {}
         return DashboardCardComponent(
           image,
           foodName,

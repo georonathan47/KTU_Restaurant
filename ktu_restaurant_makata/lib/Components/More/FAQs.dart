@@ -99,31 +99,29 @@ Container FAQs(BuildContext context) {
               builder: (context) => const FAQsScreen(),
             ),
           ),
-          child: Expanded(
-            child: Container(
-              decoration: const BoxDecoration(
-                color: BACKGROUND_COLOR,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(15),
-                  bottomRight: Radius.circular(15),
-                ),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: BACKGROUND_COLOR,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(15),
+                bottomRight: Radius.circular(15),
               ),
-              padding: const EdgeInsets.all(15.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "FAQs",
-                    style: GoogleFonts.raleway(
-                      fontSize: 20,
-                      letterSpacing: 1.2,
-                      fontWeight: FontWeight.w600,
-                      color: BLACK_COLOR,
-                    ),
+            ),
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "FAQs",
+                  style: GoogleFonts.raleway(
+                    fontSize: 20,
+                    letterSpacing: 1.2,
+                    fontWeight: FontWeight.w600,
+                    color: BLACK_COLOR,
                   ),
-                  const Icon(Icons.navigate_next, size: 40),
-                ],
-              ),
+                ),
+                const Icon(Icons.navigate_next, size: 40),
+              ],
             ),
           ),
         ),

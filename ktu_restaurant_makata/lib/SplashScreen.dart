@@ -1,10 +1,9 @@
-import 'dart:convert';
+// import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
 import 'package:ktu_restaurant_makata/Models/FoodModel.dart';
-
 
 import 'Core/WidgetFunction.dart';
 import 'Index.dart';
@@ -25,7 +24,6 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-
     initDB();
 
     controller = AnimationController(
@@ -62,23 +60,7 @@ class _SplashScreenState extends State<SplashScreen>
     controller.dispose();
     super.dispose();
   }
-
-  Future<void> goToLogin() async {
-    // if (customers > 0) {
-    //   Navigator.of(context).pushReplacement(
-    //     MaterialPageRoute(
-    //       builder: (context) => Index(),
-    //     ),
-    //   );
-    // } else {
-    //   Navigator.of(context).pushReplacement(
-    //     MaterialPageRoute(
-    //       builder: (context) => LoginAndRegister(),
-    //     ),
-    //   );
-    // }
-  }
-
+  
   Future<void> goToHome() async {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
@@ -86,14 +68,6 @@ class _SplashScreenState extends State<SplashScreen>
       ),
     );
   }
-
-  // Future<void> goToLogin() async {
-  //   Navigator.of(context).pushReplacement(
-  //     MaterialPageRoute(
-  //       builder: (context) => const LoginAndRegister(),
-  //     ),
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -109,26 +83,7 @@ class _SplashScreenState extends State<SplashScreen>
               'assets/images/logo.png',
               height: animation.value * 225,
             ),
-            // Center(
-            //   child: Text(
-            //     "Harmony Life",
-            //     style: GoogleFonts.quattrocento(
-            //       textStyle: TextStyle(
-            //         fontSize: animation.value * 20,
-            //         letterSpacing: 8,
-            //         fontWeight: FontWeight.w300,
-            //         color: Colors.black,
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            // Divider(
-            //   indent: 60,
-            //   endIndent: 60,
-            //   color: kGreenTextColor,
-            //   thickness: 1,
-            // ),
-            Center(
+            Center(  
               child: Column(
                 children: [
                   Text(
@@ -166,119 +121,4 @@ class _SplashScreenState extends State<SplashScreen>
       ),
     );
   }
-
-  // void fetchDFoodData() async {
-  //   try {
-  //     showDialog(
-  //       context: context,
-  //       builder: (context) {
-  //         return const ProgressDialog(displayMessage: 'Please wait...');
-  //       },
-  //     );
-  //     NetworkUtility networkUtility = NetworkUtility();
-  //     Response response = await networkUtility.getData(FOOD_URL);
-
-  //     debugPrint('dashboard response: ${response.body}');
-  //     debugPrint('response code: ${response.statusCode}');
-
-  //     if (response.statusCode == 200 && response != null) {
-  // //       //parse data received
-  //       var data = jsonDecode(response.body);
-
-  //       Food food = Food(
-  //         dataa: [
-  //           data['id'],
-  //           data['foodName'],
-  //           data['image'],
-  //           data['price'],
-  //           data['description'],
-  //         ],
-  //       );
-
-        //process dashboard data
-        // DashboardModel dashboardModel = DashboardModel(
-        //   billCount: data['data']['billCount'].toString(),
-        //   billSum: data['data']['billSum'].toString(),
-        //   prrCount: data['data']['prrCount'].toString(),
-        //   prrSum: data['data']['prrSum'].toString(),
-        //   bopCount: data['data']['bopCount'].toString(),
-        //   bopSum: data['data']['bopSum'].toString(),
-        //   paymentCount: data['data']['paymentCount'].toString(),
-        //   paymentSum: data['data']['paymentSum'].toString(),
-        //   totalOutStanding: data['data']['totalOutStanding'].toString(),
-        //   litigationCount: data['data']['litigationCount'].toString(),
-        //   owner: ownerId,
-        // );
-
-  //       // debugPrint('dashboard model from server: $dashboardModel');
-  //       // await dashboardDB.insertObject(dashboardModel);
-
-  //       // var currentBills = data['data']['currentBills'] as List;
-  //       // debugPrint('current bills: ${currentBills.length}');
-
-  //       // if (currentBills.isNotEmpty) {
-  //       //   List<BillModel> billList = [];
-  //       //   for (int i = 0; i < currentBills.length; i++) {
-  //       //     BillModel model = BillModel(
-  //       //       id: currentBills[i]['id'],
-  //       //       assemblyId: currentBills[i]['assemblyId'].toString(),
-  //       //       invoiceType: currentBills[i]['invoiceType'].toString(),
-  //       //       invoiceNo: currentBills[i]['invoiceNo'].toString(),
-  //       //       invoiceYear: currentBills[i]['invoiceYear'].toString(),
-  //       //       invoiceMonth: currentBills[i]['invoiceMonth'].toString(),
-  //       //       fiscalYr: currentBills[i]['fiscalYr'].toString(),
-  //       //       freqType: currentBills[i]['freqType'].toString(),
-  //       //       generatedOn: currentBills[i]['generatedOn'].toString(),
-  //       //       dueDate: currentBills[i]['dueDate'].toString(),
-  //       //       rate: currentBills[i]['rate'].toString(),
-  //       //       consumptionValue: currentBills[i]['consumptionValue'].toString(),
-  //       //       arrears: currentBills[i]['arrears'].toString(),
-  //       //       adjustment: currentBills[i]['adjustment'].toString(),
-  //       //       currentAmount: currentBills[i]['currentAmount'].toString(),
-  //       //       amountDue: currentBills[i]['amountDue'].toString(),
-  //       //       ownerId: currentBills[i]['owner']['ownerId'],
-  //       //       name: currentBills[i]['owner']['name'],
-  //       //       type: currentBills[i]['owner']['type'],
-  //       //       phone: currentBills[i]['owner']['phone'],
-  //       //       email: currentBills[i]['owner']['email'],
-  //       //     );
-
-  //       //     billList.add(model);
-  //       //   }
-
-  //       //   debugPrint('billList: $billList');
-  //       //   if (billList.isNotEmpty) {
-  //       //     for (BillModel bill in billList) {
-  //       //       await billDB.insertObject(bill);
-  //       //     }
-  //       //   }
-  //       // }
-
-  //       // await dashboardDB.initialize();
-  //       // await billDB.initialize();
-  //     } else {
-  //       UtilityService().showMessage(
-  //         message: 'Sorry, an error occurred while downloading dashboard data',
-  //         context: context,
-  //         icon: const Icon(
-  //           Icons.cancel,
-  //           color: Colors.redAccent,
-  //         ),
-  //       );
-  //     }
-  //     proceed = true;
-  //   } catch (e) {
-  //     debugPrint('fetch dashboard data error: $e');
-  //     UtilityService().showMessage(
-  //       message: 'Sorry, an error occurred while downloading dashboard data',
-  //       context: context,
-  //       icon: const Icon(
-  //         Icons.cancel,
-  //         color: Colors.redAccent,
-  //       ),
-  //     );
-  //     proceed = true;
-  //   }
-  // }
-
 }

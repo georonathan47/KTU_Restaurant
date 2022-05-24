@@ -110,12 +110,19 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   ),
                 );
               }
-              return const Card(
-                elevation: 1.25,
-                child: Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child: Text(
-                    "Couldn't fetch data...\nPlease try again later!",
+              return Center(
+                child: Card(
+                  elevation: 1.25,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Text(
+                      "Couldn't fetch data...\nPlease try again later!",
+                      style: GoogleFonts.raleway(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: .25,
+                      ),
+                    ),
                   ),
                 ),
               );
