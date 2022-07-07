@@ -3,10 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
-import 'package:ktu_restaurant_makata/Models/FoodModel.dart';
 
 import 'Core/WidgetFunction.dart';
-import 'Index.dart';
+import 'Screens/LoginAndRegister.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key key}) : super(key: key);
@@ -64,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen>
   Future<void> goToHome() async {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => const Index(),
+        builder: (context) => const LoginAndRegister(),
       ),
     );
   }

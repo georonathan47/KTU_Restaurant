@@ -3,9 +3,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ktu_restaurant_makata/Components/AppBar.dart';
 import 'package:ktu_restaurant_makata/Core/Colors.dart';
-import 'package:ktu_restaurant_makata/Screens/DashboardScreen.dart';
+import 'package:ktu_restaurant_makata/Index.dart';
 import 'package:ktu_restaurant_makata/Util/NetworkUtility.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -39,12 +38,6 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
   _LoginAndRegisterState(Function toggleView);
   Map<String, dynamic> userMap;
 
-  // @override
-  // void initState() {
-  //   // setID;
-  //   super.initState();
-  // }
-
   @override
   void dispose() {
     emailController.dispose();
@@ -65,30 +58,18 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
   Widget uiBuild(BuildContext context) {
     double screenWidth = window.physicalSize.width;
     return Scaffold(
-      appBar: AppBarComponent(
-        false,
-        "Registration Page",
-        IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(
-            Icons.navigate_before,
-            color: BLACK_COLOR,
-            size: 45,
-          ),
-        ),
-      ),
-      body: loading
-          ? const Loading()
-          : ClipRRect(
-              child: Details(screenWidth),
-            ),
+      body: ClipRRect(child: Details(screenWidth)),
     );
   }
 
   Container Details(double screenWidth) {
     final size = MediaQuery.of(context).size;
     return Container(
-      // color: BLACK25,
+      decoration: const BoxDecoration(
+          // image: DecorationImage(
+          //   image: ExactAssetImage('assets/images/logo.png', scale: 0.1),
+          // ),
+          ),
       padding: const EdgeInsets.symmetric(
         horizontal: 5,
         vertical: 1,
@@ -118,7 +99,7 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
                       inputDecorationTheme: const InputDecorationTheme(
                         labelStyle: TextStyle(
                           color: BACKGROUND_COLOR,
-                          fontSize: 20.0,
+                          fontSize: 16.0,
                         ),
                       ),
                       // textTheme: screenWidth < 500 ? smallScreen : largeScreen,
@@ -131,7 +112,7 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
                             "Create a new account!",
                             style: GoogleFonts.lato(
                               textStyle: const TextStyle(
-                                fontSize: 28,
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 color: PURPLE,
                                 letterSpacing: 1.75,
@@ -155,7 +136,7 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
                                 false,
                                 (value) {
                                   setState(() {
-                                    value = nameController;
+                                    value = nameController.text;
                                   });
                                 },
                               ),
@@ -169,7 +150,7 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
                                 false,
                                 (value) {
                                   setState(() {
-                                    value = emailController;
+                                    value = emailController.text;
                                   });
                                 },
                               ),
@@ -183,7 +164,7 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
                                 false,
                                 (value) {
                                   setState(() {
-                                    value = passwordController;
+                                    value = passwordController.text;
                                   });
                                 },
                               ),
@@ -197,7 +178,7 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
                                 true,
                                 (value) {
                                   setState(() {
-                                    value = confirmPasswordController;
+                                    value = confirmPasswordController.text;
                                   });
                                 },
                               ),
@@ -221,8 +202,8 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
                                     'Register',
                                     style: GoogleFonts.lato(
                                       textStyle: const TextStyle(
-                                        fontSize: 22,
-                                        letterSpacing: 2.2,
+                                        fontSize: 18,
+                                        letterSpacing: 1.25,
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -259,32 +240,33 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
 
   void onButtonPressed() async {
     // signIn();
+
     if (validateAndSave()) {
       setState(() {
         isAPIcall = true;
+        var userMap = {
+          "id": null,
+          "name": nameController.text,
+          "email": emailController.text,
+          "password": passwordController.text,
+          "confirm_password": confirmPasswordController.text,
+          "role": false,
+        };
       });
-      var userMap = {
-        "id": null,
-        "name": nameController.text,
-        "email": emailController.text,
-        "password": passwordController.text,
-        "confirm_password": confirmPasswordController.text,
-        "role": false,
-      };
       // var authority = "ktu-restaurant.bkayphotosgh.com";
       var response = await NetworkUtility().postData(REGISTER_URL, userMap);
       if (response.statusCode == 200) {
-         var boddy = json.decode(jsonEncode(response.body));
-        SharedPreferences localStorage = await SharedPreferences.getInstance();
-        localStorage.setString('token', json.encode(boddy['token']));
-        localStorage.setString('name', json.encode(boddy['name']));
+        var boddy = jsonEncode(response.body);
+        // SharedPreferences localStorage = await SharedPreferences.getInstance();
+        // localStorage.setString('token', json.encode(boddy['token']));
+        // localStorage.setString('name', json.encode(boddy['name']));
 
         setState(() {
           isAPIcall = false;
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const DashboardScreen(),
+              builder: (context) => const Index(),
             ),
           );
         });

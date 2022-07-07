@@ -24,14 +24,14 @@ TextFormField buildTextFormField(
       hintStyle: GoogleFonts.lato(
         textStyle: const TextStyle(
           color: BLACK_COLOR,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w500,
         ),
       ),
       labelText: label,
       labelStyle: GoogleFonts.lato(
         textStyle: const TextStyle(
           color: BLACK_COLOR,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w500,
         ),
       ),
       border: InputBorder.none,

@@ -8,7 +8,7 @@ import 'package:ktu_restaurant_makata/Screens/FAQsScreen.dart';
 
 Container FAQs(BuildContext context) {
   return Container(
-    height: 266,
+    height: MediaQuery.of(context).size.height * 0.33,
     decoration: const BoxDecoration(
       color: EMPHASIS_COLOR,
       borderRadius: BorderRadius.all(
@@ -33,7 +33,7 @@ Container FAQs(BuildContext context) {
             child: Text(
               "Contact Us",
               style: GoogleFonts.raleway(
-                fontSize: 20,
+                fontSize: 16,
                 letterSpacing: 1.2,
                 fontWeight: FontWeight.w600,
                 color: BLACK_COLOR,
@@ -46,7 +46,7 @@ Container FAQs(BuildContext context) {
               "0200100007",
               style: GoogleFonts.raleway(
                 fontWeight: FontWeight.w400,
-                fontSize: 16,
+                fontSize: 14,
                 color: BLACK_COLOR,
                 letterSpacing: .25,
               ),
@@ -70,7 +70,7 @@ Container FAQs(BuildContext context) {
             child: Text(
               "Via Email",
               style: GoogleFonts.raleway(
-                fontSize: 20,
+                fontSize: 16,
                 letterSpacing: 1.2,
                 fontWeight: FontWeight.w600,
                 color: BLACK_COLOR,
@@ -83,7 +83,7 @@ Container FAQs(BuildContext context) {
               "georonathan47@gmail.com",
               style: GoogleFonts.raleway(
                 fontWeight: FontWeight.w400,
-                fontSize: 16,
+                fontSize: 14,
                 color: BLACK_COLOR,
                 letterSpacing: .25,
               ),
@@ -114,7 +114,7 @@ Container FAQs(BuildContext context) {
                 Text(
                   "FAQs",
                   style: GoogleFonts.raleway(
-                    fontSize: 20,
+                    fontSize: 16,
                     letterSpacing: 1.2,
                     fontWeight: FontWeight.w600,
                     color: BLACK_COLOR,
