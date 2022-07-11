@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, non_constant_identifier_names
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ktu_restaurant_makata/Components/Dashboard/DashboardCard.dart';
@@ -8,6 +10,10 @@ import 'package:ktu_restaurant_makata/Core/WidgetFunction.dart';
 // import 'package:ktu_restaurant_makata/Models/CartModel.dart';
 
 import '../Components/AppBar.dart';
+import '../Models/FoodModel.dart';
+import '../Services/Path.dart';
+import '../Util/NetworkUtility.dart';
+import '../Util/Utility.dart';
 
 class FoodDetailScreen extends StatefulWidget {
   final String name, description, price, image;
@@ -26,6 +32,25 @@ class FoodDetailScreen extends StatefulWidget {
 class _FoodDetailScreenState extends State<FoodDetailScreen> {
   final controller = ScrollController();
   bool loaded = true;
+
+  Future<Food> fetchFoods() async {
+    try {
+      final response = await NetworkUtility().getData(FOOD_URL);
+      debugPrint(response.body);
+      if (response.statusCode == 200) {
+        return Food.fromJson(jsonDecode(response.body));
+      } else {
+        throw Exception('Failed to load foods');
+      }
+    } catch (err) {
+      UtilityService().showException(
+        context: context,
+        icon: const Icon(Icons.error, color: Colors.white, size: 25),
+        message: "Failed to load contents.\nPlease try again later.",
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,18 +87,49 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
         addVertical(5),
         FoodDetails(context),
         // ? Other Details
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          itemCount: 4,
-          itemBuilder: (context, index) {
-            return DashboardCardComponent(
-              'assets/images/logo.png',
-              widget.name,
-              widget.description,
-              double.parse(widget.price),
-              () {},
+        FutureBuilder(
+          future: fetchFoods(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return DashboardCardComponent(
+                    'assets/images/logo.png',
+                    widget.name,
+                    widget.description,
+                    double.parse(widget.price),
+                    () {},
+                  );
+                },
+              );
+            } else if (snapshot.hasError) {
+              return Text('SNAPSHOT ERROR: ${snapshot.error}');
+            } else if (snapshot.connectionState == ConnectionState.waiting) {
+              return Transform.scale(
+                child: const CircularProgressIndicator.adaptive(),
+                scale: 2,
+              );
+            }
+            return Container(
+              margin: const EdgeInsets.symmetric(horizontal: 35, vertical: 35),
+              decoration: const BoxDecoration(
+                color: EMPHASIS_COLOR,
+              ),
+              child: Center(
+                child: Text(
+                  'Unable to fetch data...\nPlease try again later!',
+                  style: GoogleFonts.raleway(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: .75,
+                  ),
+                ),
+              ),
             );
           },
         ),
@@ -90,7 +146,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
           color: EMPHASIS_COLOR,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25),
-            bottomRight: Radius.circular(25),
+            topRight: Radius.circular(25),
           ),
         ),
         child: Row(
@@ -101,15 +157,15 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Center(
-                      child: Text(
-                        "Food Name",
-                        style: GoogleFonts.raleway(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: .75,
-                        ),
+                    Text(
+                      "Food Name",
+                      style: GoogleFonts.raleway(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: .75,
                       ),
                     ),
                     addVertical(5),
@@ -171,6 +227,9 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
             width: double.infinity,
             decoration: const BoxDecoration(
               color: BACKGROUND_COLOR,
+              borderRadius: BorderRadius.all(
+                Radius.circular(15),
+              ),
             ),
             child: Stack(
               children: [
@@ -187,7 +246,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                         color: IVORY,
                       ),
                       child: IconButton(
-                      padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         // ? Fix the index
                         // onPressed: () => CartClass().addItem(0),
                         onPressed: () => null,

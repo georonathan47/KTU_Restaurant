@@ -95,7 +95,7 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
                   key: _formkey,
                   child: Theme(
                     data: ThemeData(
-                      brightness: Brightness.dark,
+                      brightness: Brightness.light,
                       inputDecorationTheme: const InputDecorationTheme(
                         labelStyle: TextStyle(
                           color: BACKGROUND_COLOR,
@@ -108,17 +108,29 @@ class _LoginAndRegisterState extends State<LoginAndRegister> {
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                          child: Text(
-                            "Create a new account!",
-                            style: GoogleFonts.lato(
-                              textStyle: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: PURPLE,
-                                letterSpacing: 1.75,
-                                fontStyle: FontStyle.normal,
+                          child: Column(
+                            children: [
+                              Transform.scale(
+                                scale: 2,
+                                child: Image.asset(
+                                  'assets/images/logo.png',
+                                  height: 100,
+                                ),
                               ),
-                            ),
+                              // addVertical(15),
+                              Text(
+                                "Create a new account!",
+                                style: GoogleFonts.lato(
+                                  textStyle: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: PURPLE,
+                                    letterSpacing: 1.75,
+                                    fontStyle: FontStyle.normal,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         addVertical(size.height * 0.025),

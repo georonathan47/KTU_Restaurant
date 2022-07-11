@@ -40,13 +40,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       appBar: AppBarComponent(true, "Dashboard", null),
       body: Container(
+        height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           color: IVORY,
         ),
         child: RefreshIndicator(
           onRefresh: () async => await fetchFoods(),
           child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
@@ -79,6 +80,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     // ),
                   ],
                 ),
+                addVertical(15),
                 SizedBox(
                   height: 270,
                   child: FutureBuilder(
@@ -145,6 +147,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     // ),
                   ],
                 ),
+                addVertical(15),
                 SizedBox(
                   child: Scrollbar(
                     thickness: 5.5,
@@ -164,47 +167,41 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Scrollbar DoThis(AsyncSnapshot<dynamic> snapshot) {
-    return Scrollbar(
-      // isAlwaysShown: true,
-      thickness: 5.5,
-      scrollbarOrientation: ScrollbarOrientation.bottom,
-      child: ListView.builder(
-        // controller: scrollContriller,
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.only(right: 15),
-        itemCount: snapshot.data.dataa.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(right: 15.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => FoodDetailScreen(
-                      name: snapshot.data.dataa[index].foodName,
-                      image: snapshot.data.dataa[index].image,
-                      price: snapshot.data.dataa[index].price,
-                      description: snapshot.data.dataa[index].description,
-                    ),
+  ListView DoThis(AsyncSnapshot<dynamic> snapshot) {
+    return ListView.builder(
+      // controller: scrollContriller,
+      physics: const BouncingScrollPhysics(),
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.only(right: 15),
+      itemCount: snapshot.data.dataa.length,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.only(right: 15.0),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FoodDetailScreen(
+                    name: snapshot.data.dataa[index].foodName,
+                    image: snapshot.data.dataa[index].image,
+                    price: snapshot.data.dataa[index].price,
+                    description: snapshot.data.dataa[index].description,
                   ),
-                );
-              },
-              child: DashboardCardComponent(
-                /*snapshot.data.dataa[index].image ??*/ 'assets/images/logo.png',
-                snapshot.data.dataa[index].foodName ?? "Gɔbɛ",
-                snapshot.data.dataa[index].description ??
-                    "With Groundnut Soup and Chicken/Fish",
-                double.parse(snapshot.data.dataa[index].price).toDouble(),
-                null,
-              ),
+                ),
+              );
+            },
+            child: DashboardCardComponent(
+              'assets/images/logo.png',
+              snapshot.data.dataa[index].foodName,
+              snapshot.data.dataa[index].description,
+              double.parse(snapshot.data.dataa[index].price).toDouble(),
+              null,
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 
